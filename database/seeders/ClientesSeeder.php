@@ -26,6 +26,7 @@ class ClientesSeeder extends Seeder
 //        Cliente::create(['codcliente'=>'101535','nombrecliente'=>'JAIME TERRAZAS','estado'=>'a','idpromotor'=>'2','idmercado'=>'22']);
 //        Cliente::create(['codcliente'=>'100896','nombrecliente'=>'NICOL SEJAS','estado'=>'a','idpromotor'=>'2','idmercado'=>'28']);
 //        Cliente::create(['codcliente'=>'101877','nombrecliente'=>'EVANGELINA RODRIGUEZ','estado'=>'a','idpromotor'=>'2','idmercado'=>'29']);
+
 //
 //        //OFICINA
 //        $nombres = ['POLLO GOYITA','SALT. PANTANAL','SALT. HAMACIEL','POLLO BISMUCOR','SALT. TARUPESAL','WILDER DELGADILLO CAMPANA','SACURA MECHERO','POLLO ANGELA','MARGARITA ESTRADA','SACURA AMERICA','POLLO AMBORO','SALT. QUIRQUINCHO','SHAWARMAA RAHMAN','SHAWARMA HELMI','SHAWARMA MOHAMED','DEISY ROJAS','POLLO JOSUE','POLLO EL BUEN SAMARITANO','POLLO CITY SUC. 1','POLLO URKUPIÑA','NEYER TOLEDO','RESTAURANT LA BRASIL ','DOCTOR DONNER','MARCELO LA FUENTE','POLLO CARLING Z. 4 ANILLO CENTENARIO','POLLO COQUETO','POLLO SUPER THIAGO'];
@@ -33,7 +34,7 @@ class ClientesSeeder extends Seeder
 //            DB::table('clientes')->insert([
 //                'nombrecliente'=>$nom,
 //                'estado'=>'a',
-//                'idpromotor'=> 1,
+//                'idpromotor'=> 6,
 //                'idmercado'=> 39
 //            ]);
 //        }

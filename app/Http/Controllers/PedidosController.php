@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detalle;
+
+use App\Models\Detalle;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
