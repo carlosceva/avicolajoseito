@@ -37,7 +37,7 @@ return new class extends Migration
             $table->increments('idpedido');
             $table->integer('idcliente')->unsigned();
             $table->integer('idpromotor')->unsigned();
-            $table->string('observacion');
+            $table->string('observacion')->nullable();
             $table->foreign('idcliente')->references('idcliente')->on('clientes');
             $table->foreign('idpromotor')->references('idpromotor')->on('promotores');
             $table->timestamps();

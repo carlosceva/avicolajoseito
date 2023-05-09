@@ -36,6 +36,7 @@ Route::resource('/pedidos',PedidosController::class);
 Route::resource('/promotores',PromotoresController::class);
 Route::resource('/bloqueados',ClientesController::class);
 Route::resource('/bloquear',BloquearController::class);
+Route::get('/ventas',[PedidosController::class,'ventas']);
 });
 
 require __DIR__.'/auth.php';

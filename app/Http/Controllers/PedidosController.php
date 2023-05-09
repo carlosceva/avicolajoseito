@@ -87,11 +87,10 @@ class PedidosController extends Controller
                 $cont=$cont+1;
             }
             DB::commit();
+            session()->flash('status','Registro guardado exitosamente!!');
         }catch (\Exception $e){
             //dd($e);
         }
-
-        session()->flash('status','Registro guardado exitosamente!!');
 
         return Redirect::to('pedidos');
     }
@@ -126,5 +125,28 @@ class PedidosController extends Controller
     public function destroy(Pedido $pedido)
     {
         //
+    }
+
+    public function ventas()
+    {
+        $promotor=Auth::id();
+
+        $productos = DB::table('detallepedidos as d')
+            ->join('productos as pr','pr.idproducto','=','d.idproducto')
+            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+            ->select('pr.nombreproducto', DB::raw('sum(d.cantidad) as cant'))
+            ->where('pe.idpromotor','=',$promotor)
+            ->groupBy('pr.nombreproducto')
+            ->orderBy('pr.nombreproducto')
+            ->get();
+
+        $total = DB::table('detallepedidos as d')
+            ->join('productos as pr','pr.idproducto','=','d.idproducto')
+            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+            ->select(DB::raw('sum(d.cantidad) as cant'))
+            ->where('pe.idpromotor','=',$promotor)
+            ->first();
+
+        return view('Pedidos.ventas',['productos'=>$productos,'total'=>$total]);
     }
 }

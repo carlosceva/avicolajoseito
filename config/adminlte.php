@@ -318,6 +318,11 @@ return [
             'url'  => '/pedidos',
             'icon' => 'fas fa-fw fa-list',
         ],
+        [
+            'text' => 'Mis ventas',
+            'url'  => '/ventas',
+            'icon' => 'fas fa-fw fa-list',
+        ],
 
         ['header' => 'CLIENTES'],
         /*[

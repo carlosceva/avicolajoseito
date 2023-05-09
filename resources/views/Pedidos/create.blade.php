@@ -145,8 +145,8 @@
         }
 
         function limpiar(){
-            $("#idproducto").val("");
-            $("#cantidad").val("");
+            $('#idproducto').val("");
+            $('#cantidad').val("");
         }
 
         function evaluar(){
@@ -176,10 +176,8 @@
 @stop
 
 @section('footer')
-
-    <div class="float-right d-none d-sm-block">
-        <b>Version</b> 1.1
-    </div>
-    <strong>Copyright © 2023 <a href="">cevasoft</a>.</strong> All rights reserved.
-
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.1
+        </div>
+        <strong>Copyright © 2023 <a href="">cevasoft</a>.</strong> All rights reserved.
 @stop
