@@ -32,7 +32,7 @@ class BloquearController extends Controller
     {
         $datos = $request->codigoclientes;
         $codigo = explode(",",$datos);
-        $numero = count($codigo) - 1;
+        $numero = count($codigo);
         for ($i=0 ; $i<$numero ; $i++){
             DB::table('clientes')->where('codcliente','=',$codigo[$i])->update(['estado'=>'i']);
         };

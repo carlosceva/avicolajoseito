@@ -19,7 +19,8 @@
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Mercado</th>
-                <th>Celular</th>
+                <th>Estado</th>
+                <th>Accion</th>
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -29,7 +30,20 @@
                     <td>{{$b->codcliente}}</td>
                     <td>{{$b->nombrecliente}}</td>
                     <td>{{$b->mercado}}</td>
-                    <td>{{$b->celular}}</td>
+                    <td id="resp{{$b->idcliente}}">
+                        @if($b->estado =="a")
+                            activo
+                        @else
+                            inactivo
+                        @endif
+                    </td>
+                    <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" <?php if($b->estado == 'a') {echo "checked";} ?> 
+                        onClick="toggleStatus(<?php echo $b->idcliente ?>,'<?php echo $b->estado ?>')" type="checkbox" id="check">
+                        
+                    </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -43,7 +57,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
 @stop
 
 @section('footer')

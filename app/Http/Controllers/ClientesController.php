@@ -20,7 +20,7 @@ class ClientesController extends Controller
             ->join('mercados as m','m.idmercado','=','c.idmercado')
             ->where('c.idpromotor','=',$promotor)
             ->where('c.estado','=','i')
-            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular')
+            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
             ->orderBy('c.nombrecliente','asc')
             ->get();
         return view('Clientes.bloqueados',['bloqueados'=>$bloqueados]);
@@ -31,7 +31,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -39,7 +39,7 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -55,7 +55,7 @@ class ClientesController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        
     }
 
     /**
@@ -63,7 +63,7 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+
     }
 
     /**
