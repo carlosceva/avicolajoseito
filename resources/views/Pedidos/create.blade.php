@@ -45,7 +45,7 @@
 
                 <!-- Fila producto, cantidad y boton agregar -->
                 <div class="form-group row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-3">
                         <label for="idproducto"> Producto</label>
                         <select id="idproducto" name="idproducto" class="form-control " data-live-search="true" >
                             <option value="">Seleccione Producto</option>
@@ -61,27 +61,34 @@
                     </div>
 
                     <div class="form-group col-md-3">
+                        <label for="descripcion"> Descripcion</label>
+                        <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="descripcion" value="{{old('cantidad')}}" >
+                    </div>
+
+                    <div class="form-group col-md-3">
                         <label for="">&nbsp;</label>
                         <button type="button" id="agregar" class="btn btn-primary col-md-12"> <i class="fa fa-plus"></i>&nbsp; Agregar</button>
                     </div>
                 </div>
 
                 <!-- Fila Tabla detalles -->
-                <div class="row table-responsive">
-                    <table id="detalles" class="table table-bordered table-striped table-light">
-                        <thead>
-                        <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Opciones</th>
-                        </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
+                <div class="container">
+                    <div class="table-responsive">
+                        <table id="detalles" class="table table-bordered table-striped table-light">
+                            <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">descripcion</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
                 <!-- Fila observacion -->
                 <div class="form-group">
                     <label for="observacion"> Observación</label>
@@ -130,11 +137,12 @@
             idproducto=$("#idproducto").val();
             producto=$("#idproducto option:selected").text();
             cantidad=$("#cantidad").val();
+            descripcion = $("#descripcion").val();
             console.log(cantidad);
             if(idproducto && cantidad){
                 subtotal[cont]=(cantidad);
                 total = total + subtotal[cont];
-                var fila = '<tr class="selected" id="fila'+ cont+'"><td><input type="hidden" name="idproducto[]" value="'+idproducto+'"><input class="form-control-plaintext" type="text" name="" value="'+producto+'"></td><td><input class="form-control-plaintext" type="number" name="cantidad[]" value="'+cantidad+'"></td><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td></tr>';
+                var fila = '<tr class="selected" id="fila'+ cont+'"><td><input type="hidden" name="idproducto[]" value="'+idproducto+'"><input class="form-control-plaintext" type="text" name="" value="'+producto+'"></td><td><input class="form-control-plaintext" type="number" name="cantidad[]" value="'+cantidad+'"></td><td><input class="form-control-plaintext" type="text" name="descripcion[]" value="'+descripcion+'"></td><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td></tr>';
                 cont++;
                 limpiar();
                 evaluar();
@@ -147,6 +155,7 @@
         function limpiar(){
             $('#idproducto').val("");
             $('#cantidad').val("");
+            $('#descripcion').val("");
         }
 
         function evaluar(){
@@ -176,7 +185,7 @@
 @stop
 
 @section('footer')
-        <div class="float-right d-none d-sm-block">
+        <div class="float-right d-sm-block">
             <b>Version</b> 1.1
         </div>
         <strong>Copyright © 2023 <a href="">cevasoft</a>.</strong> All rights reserved.

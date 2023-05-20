@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,7 +15,16 @@ class BloquearController extends Controller
      */
     public function index()
     {
-        return view('Clientes.bloquear');
+        $promotor=Auth::id();
+        $bloqueados =  DB::table('clientes as c')
+            ->select('c.idcliente','c.nombrecliente','c.codcliente')
+            ->join('mercados as m','m.idmercado','=','c.idmercado')
+            ->where('c.idpromotor','=',$promotor)
+            ->where('c.estado','=','i')
+            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
+            ->orderBy('c.nombrecliente','asc')
+            ->get();
+        return view('Clientes.bloqueados',['bloqueados'=>$bloqueados]);
     }
 
     /**
@@ -71,5 +81,9 @@ class BloquearController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function indexBloquear(){
+        return view('Clientes.bloquear');
     }
 }

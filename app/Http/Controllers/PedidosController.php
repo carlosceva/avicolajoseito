@@ -74,6 +74,7 @@ class PedidosController extends Controller
 
             $idproducto=$request->get('idproducto');
             $cantidad=$request->get('cantidad');
+            $descripcion=$request->get('descripcion');
             $size = count((array)$idproducto);
 
             $cont = 0;
@@ -82,7 +83,7 @@ class PedidosController extends Controller
                 $detalle->idpedido=$pedido->idpedido;
                 $detalle->idproducto=$idproducto[$cont];
                 $detalle->cantidad=$cantidad[$cont];
-                $detalle->descripcion='';
+                $detalle->descripcion=$descripcion[$cont];
                 $detalle->save();
                 $cont=$cont+1;
             }
@@ -134,7 +135,7 @@ class PedidosController extends Controller
         $productos = DB::table('detallepedidos as d')
             ->join('productos as pr','pr.idproducto','=','d.idproducto')
             ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('pr.nombreproducto', DB::raw('sum(d.cantidad) as cant'))
+            ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
             ->where('pe.idpromotor','=',$promotor)
             ->groupBy('pr.nombreproducto')
             ->orderBy('pr.nombreproducto')
@@ -147,6 +148,9 @@ class PedidosController extends Controller
             ->where('pe.idpromotor','=',$promotor)
             ->first();
 
-        return view('Pedidos.ventas',['productos'=>$productos,'total'=>$total]);
+        $producto = $productos->pluck('producto');
+        $cantidad = $productos->pluck('cant');
+
+        return view('Pedidos.ventas',['productos'=>$productos,'total'=>$total,'producto'=>$producto,'cantidad'=>$cantidad]);
     }
 }

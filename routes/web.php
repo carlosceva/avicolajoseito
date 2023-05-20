@@ -21,9 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard',[PedidosController::class,'ventas'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,9 +32,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
 Route::resource('/pedidos',PedidosController::class);
 Route::resource('/promotores',PromotoresController::class);
-Route::resource('/bloqueados',ClientesController::class);
-Route::resource('/bloquear',BloquearController::class);
-Route::get('/ventas',[PedidosController::class,'ventas']);
+Route::get('/bloqueados',[BloquearController::class,'index']);
+Route::get('/bloquear',[BloquearController::class,'indexBloquear']);
+//Route::get('/ventas',[PedidosController::class,'ventas']);
+Route::resource('/clientes',ClientesController::class);
+Route::get('/client',[ClientesController::class,'todosLosClientes']);
 });
 
 require __DIR__.'/auth.php';

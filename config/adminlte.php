@@ -311,42 +311,68 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-
-        ['header' => 'PEDIDOS'],
         [
-            'text' => 'Mis pedidos',
-            'url'  => '/pedidos',
-            'icon' => 'fas fa-fw fa-list',
+            'text'    => 'PEDIDOS',
+            'icon' => 'fas fa-fw fa-copy',
+            'submenu' => [
+                [
+                    'text' => 'Mis pedidos',
+                    'url'  => '/pedidos',
+                    'icon' => 'fas fa-fw fa-list',
+                    'shift' => 'ml-4',
+                ],
+            ],
         ],
         [
-            'text' => 'Mis ventas',
-            'url'  => '/ventas',
-            'icon' => 'fas fa-fw fa-list',
-        ],
-
-        ['header' => 'CLIENTES'],
+            'text'    => 'CLIENTES',
+            'icon' => 'fa fa-address-book',
+            'submenu' => [
         /*[
             'text' => 'Registrar ubicación',
             'url'  => '/ubicacion',
             'icon' => 'fas fa-fw fa-map-marker',
         ],*/
-        [
-            'text' => 'Ver bloqueados',
-            'url'  => '/bloqueados',
-            'icon' => 'fa fa-user-slash',
+                [
+                    'text' => 'Mis clientes',
+                    'url'  => '/clientes',
+                    'icon' => 'fa fa-users',
+                    'shift' => 'ml-4',            
+                ],
+                [
+                    'text' => 'Ver bloqueados',
+                    'url'  => '/bloqueados',
+                    'icon' => 'fa fa-user-times',
+                    'shift' => 'ml-4',
+                ],
+                [
+                    'text' => 'Bloquear clientes',
+                    'url'  => '/bloquear',
+                    'icon' => 'fa fa-user-slash',
+                    'id' => 'cevaclass',
+                    'shift' => 'ml-4',
+                ],
+            ],
         ],
+        
         [
-            'text' => 'Bloquear clientes',
-            'url'  => '/bloquear',
-            'icon' => 'fa fa-user',
-            'id' => 'cevaclass'
+            'text'    => 'REGISTRO DE USUARIOS',
+            'icon' => 'fa fa-address-card',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar promotores',
+                    'url'  => '/promotores',
+                    'icon' => 'fas fa-fw fa-user',
+                    'shift' => 'ml-4',
+                ],
+                [
+                    'text' => 'Gestionar clientes',
+                    'url'  => '/client',
+                    'icon' => 'fas fa-fw fa-user',
+                    'shift' => 'ml-4',
+                ],    
+            ],
         ],
-        ['header' => 'PROMOTORES'],
-        [
-            'text' => 'Gestionar promotores',
-            'url'  => '/promotores',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+        
     ],
 
     /*

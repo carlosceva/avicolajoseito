@@ -4,7 +4,7 @@
 
 @section('content_header')
     <div class="row justify-content-start">
-        <div class="col-3">
+        <div class="">
             <h1>Bloquear clientes</h1>
         </div>
     </div>

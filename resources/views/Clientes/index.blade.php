@@ -1,17 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes bloqueados')
+@section('title', 'Mis clientes')
 
 @section('content_header')
-    <div class="row justify-content-start">
-        <div>
-            <h1>Clientes bloqueados</h1>
-        </div>
+<div class="float-right d-sm-block">
+            <a href="{{url('clientes/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
     </div>
+    <h1>Todos los clientes</h1>
 @stop
 
 @section('content')
-    <div class="row card">
+    <div class="row card table-responsive">
         <table class="table table-hover">
             <thead class="table-light">
             <tr>
@@ -20,29 +19,21 @@
                 <th>Nombre</th>
                 <th class="d-none d-md-table-cell">Mercado</th>
                 <th>Estado</th>
-                <th>Accion</th>
             </tr>
             </thead>
             <tbody class="table-group-divider">
-            @foreach($bloqueados as $b)
-                <tr>
+            @foreach($clientes as $b)
+                <tr <?php if ($b->estado ==="i") { echo 'style="background-color: red; color:white;"'; } ?>>
                     <td>{{ $b->idcliente }}</td>
                     <td>{{$b->codcliente}}</td>
                     <td>{{$b->nombrecliente}}</td>
                     <td class="d-none d-md-table-cell">{{$b->mercado}}</td>
-                    <td id="resp{{$b->idcliente}}">
+                    <td>
                         @if($b->estado =="a")
                             activo
                         @else
                             inactivo
                         @endif
-                    </td>
-                    <td class="text-center">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" <?php if($b->estado == 'a') {echo "checked";} ?> 
-                        onClick="toggleStatus(<?php echo $b->idcliente ?>,'<?php echo $b->estado ?>')" type="checkbox" id="check">
-                        
-                    </div>
                     </td>
                 </tr>
             @endforeach

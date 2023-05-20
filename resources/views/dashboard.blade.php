@@ -18,6 +18,7 @@
     @role('auxiliar')
     <p>Esta info es para el auxiliar</p>
     @endrole
+    
 @stop
 
 @section('css')
