@@ -46,8 +46,8 @@ Route::get('/bloquear',[BloquearController::class,'indexBloquear']);
 Route::post('/bloquear', [BloquearController::class,'store'])->name('bloquear.store');
 
 //Route::get('/ventas',[PedidosController::class,'ventas']);
-Route::resource('/clientes',ClientesController::class);
-Route::get('/client',[ClientesController::class,'todosLosClientes']);
+Route::resource('/misclientes',ClientesController::class);
+Route::get('/clientes',[ClientesController::class,'todosLosClientes'])->name('client.all');
 
 Route::get('/pedidos/{pedido}/edit',[PedidosController::class,'edit'])->name('pedidos.edit');
 Route::get('/pedidos/{detalle}/detalle',[PedidosController::class,'detalle'])->name('pedidos.detalle');

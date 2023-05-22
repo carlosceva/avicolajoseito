@@ -340,7 +340,7 @@ return [
         ],*/
                 [
                     'text' => 'Mis clientes',
-                    'url'  => '/clientes',
+                    'url'  => '/misclientes',
                     'icon' => 'fa fa-users',
                     'shift' => 'ml-4',            
                 ],
@@ -375,7 +375,7 @@ return [
                 ],
                 [
                     'text' => 'Gestionar clientes',
-                    'url'  => '/client',
+                    'url'  => '/clientes',
                     'icon' => 'fas fa-fw fa-user',
                     'shift' => 'ml-4',
                     'can' => 'Clientes',

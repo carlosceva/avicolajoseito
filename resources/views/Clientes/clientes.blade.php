@@ -8,14 +8,10 @@
             <a href="{{url('clientes/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
     </div>
 @endif
-    <h1>Mis clientes</h1>
+    <h1>Todos mis clientes</h1>
 @stop
 
 @section('content')
-    <form action="{{ route('client.all') }}" method="GET">
-        <input type="text" name="search" placeholder="Buscar por nombre">
-        <button type="submit">Buscar</button>
-    </form>
     <div class="row card table-responsive">
         <table class="table table-hover">
             <thead class="table-light">
