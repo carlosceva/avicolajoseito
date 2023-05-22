@@ -317,10 +317,16 @@ return [
             'submenu' => [
                 [
                     'text' => 'Mis pedidos',
-                    'url'  => '/pedidos',
+                    'url'  => '/mispedidos',
                     'icon' => 'fas fa-fw fa-list',
                     'shift' => 'ml-4',
                 ],
+                /*[
+                    'text' => 'Gestionar Pedidos',
+                    'url'  => '/pedidos',
+                    'icon' => 'fas fa-fw fa-list',
+                    'shift' => 'ml-4',
+                ],*/
             ],
         ],
         [

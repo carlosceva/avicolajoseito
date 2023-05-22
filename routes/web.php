@@ -30,13 +30,28 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-Route::resource('/pedidos',PedidosController::class);
+
+Route::get('/mispedidos',[PedidosController::class,'index']);
+//Route::get('/pedidos',[PedidosController::class,'index2']);
+Route::get('/mispedidos/create',[PedidosController::class,'create']);
+//Route::get('/pedidos/create',[PedidosController::class,'create2']);
+Route::post('/mispedidos', [PedidosController::class,'store'])->name('pedidos.store');
+
 Route::resource('/promotores',PromotoresController::class);
+
 Route::get('/bloqueados',[BloquearController::class,'index']);
+Route::patch('/bloqueados/{bloq}', [BloquearController::class,'update'])->name('bloquear.update');
+
 Route::get('/bloquear',[BloquearController::class,'indexBloquear']);
+Route::post('/bloquear', [BloquearController::class,'store'])->name('bloquear.store');
+
 //Route::get('/ventas',[PedidosController::class,'ventas']);
 Route::resource('/clientes',ClientesController::class);
 Route::get('/client',[ClientesController::class,'todosLosClientes']);
+
+Route::get('/pedidos/{pedido}/edit',[PedidosController::class,'edit'])->name('pedidos.edit');
+Route::get('/pedidos/{detalle}/detalle',[PedidosController::class,'detalle'])->name('pedidos.detalle');
+Route::put('/pedidos/{detalle}',[PedidosController::class,'update'])->name('pedidos.update');
 });
 
 require __DIR__.'/auth.php';

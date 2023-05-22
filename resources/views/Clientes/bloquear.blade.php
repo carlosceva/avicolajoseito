@@ -17,7 +17,7 @@
         </div>
     @endif
     <main>
-        <form action="{{url('bloquear')}}" method="post">
+        <form action="{{route('bloquear.store')}}" method="post">
             @csrf
             <div class="container row">
                     <div class="col-md-6">

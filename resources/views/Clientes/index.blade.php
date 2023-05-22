@@ -6,7 +6,7 @@
 <div class="float-right d-sm-block">
             <a href="{{url('clientes/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
     </div>
-    <h1>Todos los clientes</h1>
+    <h1>Mis clientes</h1>
 @stop
 
 @section('content')
@@ -17,8 +17,8 @@
                 <th>Id</th>
                 <th>Codigo</th>
                 <th>Nombre</th>
-                <th class="d-none d-md-table-cell">Mercado</th>
                 <th>Estado</th>
+                <th>Accion</th>
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -27,13 +27,23 @@
                     <td>{{ $b->idcliente }}</td>
                     <td>{{$b->codcliente}}</td>
                     <td>{{$b->nombrecliente}}</td>
-                    <td class="d-none d-md-table-cell">{{$b->mercado}}</td>
+                    
                     <td>
                         @if($b->estado =="a")
                             activo
                         @else
                             inactivo
                         @endif
+                    </td>
+                    <td class="text-center">
+                        <div class="form-check form-switch">
+                            <form method="POST" action="{{ route('bloquear.update', $b->idcliente) }}">
+                                @method('PATCH')
+                                @csrf
+                                <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($b->estado == 'i') ? '' : 'checked' }}>
+                            </form>
+                        </div>
+                        
                     </td>
                 </tr>
             @endforeach

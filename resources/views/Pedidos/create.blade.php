@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('title', 'Registrar Pedido')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @section('content_header')
     <div class="row">
         <div class="col-md-3"><h1>Registrar pedido</h1></div>
@@ -21,7 +21,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <form action="{{url('pedidos')}}" method="post">
+            <form action="{{route('pedidos.store')}}" method="post">
                 @csrf
 
                 <!-- Fila Cliente y codigo cliente -->

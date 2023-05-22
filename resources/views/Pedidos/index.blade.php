@@ -10,7 +10,7 @@
     @endif
 
     <div class="float-right d-sm-block">
-            <a href="{{url('pedidos/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
+            <a href="{{url('mispedidos/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
     </div>
     <h1>Mis pedidos</h1>
 @stop
@@ -24,14 +24,14 @@
                 <div class="card-body row">
                     <div class="col-md-7">
                         <div class="card-body">
-                            <div class="row justify-content-between">
+                            <div class="d-flex justify-content-between">
                                 <h5 class="card-title">#{{ $pe->idpedido }}</h5>
                                 <p class="card-text"><small class="text-body-secondary col-4">{{ date('H:i',strtotime($pe->hora)) }}</small></p>
                             </div>
                             <label class="card-text">{{$pe->nombrecliente}}</label>
                             <p class="card-text">{{$pe->nombremercado}}</p>
                             <p class="card-text">Obs.: {{$pe->observacion}}</p>
-                            <div class="row justify-content-between">
+                            <div class="d-flex justify-content-between">
                                 <p class="card-text"><small class="text-body-secondary col-4">{{ date('d/m/Y',strtotime($pe->hora)) }}</small></p>
                             </div>
                         </div>
@@ -40,7 +40,9 @@
                         <ul class="list-group list-group-flush">
                                 @foreach($detalles as $det)
                                     @if($det->idpedido == $pe->idpedido)
-                                        <li class="list-group-item bg-gray-light">{{$det->nombreproducto}} &nbsp; {{$det->cantidad}}</li>
+                                        <li class="list-group-item bg-gray-light small">{{$det->nombreproducto}} &nbsp; 
+                                        <b> {{$det->cantidad}} &nbsp; 
+                                        <a href="{{ route('pedidos.detalle',$det->iddetalle)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></b></li>
                                     @endif
                                 @endforeach
                         </ul>

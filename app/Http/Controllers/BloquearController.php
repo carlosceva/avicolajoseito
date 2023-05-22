@@ -72,8 +72,14 @@ class BloquearController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $cliente = Cliente::findOrFail($id);
+        //dd($bloquear);
+        $estado = request()->has('estado') ? 'a' : 'i';
+        $cliente->update(['estado' => $estado]);
+        //return Redirect::to('bloqueados');
+        return redirect()->back();
     }
+
 
     /**
      * Remove the specified resource from storage.

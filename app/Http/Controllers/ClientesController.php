@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 class ClientesController extends Controller
 {
     /**
@@ -34,10 +36,6 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        /**$promotores =  DB::table('promotor as p')
-            ->orderBy('p.nombrepromotor','asc')
-            ->get();
-        */
         $promotores = Promotor::orderBy('nombrepromotor', 'asc')->get();
         $mercados = Mercado::orderBy('nombremercado', 'asc')->get();
         return view('clientes.create',['promotores'=>$promotores,'mercados'=>$mercados]);

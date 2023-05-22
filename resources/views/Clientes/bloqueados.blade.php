@@ -37,12 +37,17 @@
                             inactivo
                         @endif
                     </td>
+                    
                     <td class="text-center">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" <?php if($b->estado == 'a') {echo "checked";} ?> 
-                        onClick="toggleStatus(<?php echo $b->idcliente ?>,'<?php echo $b->estado ?>')" type="checkbox" id="check">
+                        <div class="form-check form-switch">
+                            <form method="POST" action="{{ route('bloquear.update', $b->idcliente) }}">
+                                @method('PATCH')
+                                @csrf
+                                <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($b->estado == 'i') ? '' : 'checked' }}>
+                                
+                            </form>
+                        </div>
                         
-                    </div>
                     </td>
                 </tr>
             @endforeach
