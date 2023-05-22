@@ -3,9 +3,11 @@
 @section('title', 'Mis clientes')
 
 @section('content_header')
-<div class="float-right d-sm-block">
+@if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+    <div class="float-right d-sm-block">
             <a href="{{url('clientes/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
     </div>
+@endif
     <h1>Mis clientes</h1>
 @stop
 
@@ -18,7 +20,9 @@
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Estado</th>
-                <th>Accion</th>
+                @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+                    <th>Accion</th>
+                @endif
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -35,6 +39,7 @@
                             inactivo
                         @endif
                     </td>
+                    @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
                     <td class="text-center">
                         <div class="form-check form-switch">
                             <form method="POST" action="{{ route('bloquear.update', $b->idcliente) }}">
@@ -43,8 +48,8 @@
                                 <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($b->estado == 'i') ? '' : 'checked' }}>
                             </form>
                         </div>
-                        
                     </td>
+                    @endif
                 </tr>
             @endforeach
             </tbody>

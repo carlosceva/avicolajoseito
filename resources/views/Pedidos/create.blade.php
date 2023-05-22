@@ -99,7 +99,7 @@
                 <div class="w3-row text-center" id="guardar">
                         <button type="submit" id="register" class="btn btn-success col-md-3">Guardar</button>
                         <label class="col-md-1">&nbsp;</label>
-                        <a href="{{url('pedidos')}}" class="btn btn-danger col-md-3">Cancelar</a>
+                        <a href="{{url('mispedidos')}}" class="btn btn-danger col-md-3">Cancelar</a>
                 </div>
             </form>
         </div>

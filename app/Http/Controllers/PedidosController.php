@@ -18,26 +18,28 @@ class PedidosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index2(){
-        $pedidos = DB::table('pedidos as p')
-            ->join('clientes as c','p.idcliente','=','c.idcliente')
-            ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->join('promotores as pro','p.idpromotor','=','pro.idpromotor')
-            ->select('p.idpedido','p.created_at as hora','c.codcliente','c.nombrecliente','m.nombremercado','pro.nombrepromotor')
-            ->orderBy('p.idpedido','desc')
-            ->get();
-        $detalles = DB::table('detallepedidos as d')
-            ->join('productos as pr','pr.idproducto','=','d.idproducto')
-            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('d.idpedido','pr.nombreproducto','d.cantidad')
-            ->get();
+    // public function index2(){
+    //     $pedidos = DB::table('pedidos as p')
+    //         ->join('clientes as c','p.idcliente','=','c.idcliente')
+    //         ->join('mercados as m','m.idmercado','=','c.idmercado')
+    //         ->join('promotores as pro','p.idpromotor','=','pro.idpromotor')
+    //         ->select('p.idpedido','p.created_at as hora','c.codcliente','c.nombrecliente','m.nombremercado','pro.nombrepromotor')
+    //         ->orderBy('p.idpedido','desc')
+    //         ->get();
+    //     $detalles = DB::table('detallepedidos as d')
+    //         ->join('productos as pr','pr.idproducto','=','d.idproducto')
+    //         ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+    //         ->select('d.idpedido','pr.nombreproducto','d.cantidad')
+    //         ->get();
 
-        return view('Pedidos.index2',['pedidos'=>$pedidos,'detalles'=>$detalles]);
-    }
+    //     return view('Pedidos.index2',['pedidos'=>$pedidos,'detalles'=>$detalles]);
+    // }
 
     public function index()
     {
-        $promotor=Auth::id();
+        $promotor = Auth::user()->idpromotor;
+        
+        if(Auth::user()->rol == 'promotor'){
         $pedidos = DB::table('pedidos as p')
             ->join('clientes as c','p.idcliente','=','c.idcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
@@ -50,6 +52,20 @@ class PedidosController extends Controller
             ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
             ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad')
             ->get();
+        }
+        if(Auth::user()->rol == 'auxiliar' || Auth::user()->rol == 'administrador'){
+            $pedidos = DB::table('pedidos as p')
+            ->join('clientes as c','p.idcliente','=','c.idcliente')
+            ->join('mercados as m','m.idmercado','=','c.idmercado')
+            ->select('p.idpedido','p.idcliente','p.idpromotor','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
+            ->orderBy('p.idpedido','desc')
+            ->get();
+        $detalles = DB::table('detallepedidos as d')
+            ->join('productos as pr','pr.idproducto','=','d.idproducto')
+            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad')
+            ->get();
+        }
 
         return view('Pedidos.index',['pedidos'=>$pedidos,'detalles'=>$detalles]);
     }
@@ -59,13 +75,22 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        $promotor=Auth::id();
-        $clientes =  DB::table('clientes as c')
-            ->select('c.idcliente','c.nombrecliente','c.codcliente')
-            ->where('c.idpromotor','=',$promotor)
-            ->where('c.estado','=','a')
-            ->orderBy('c.nombrecliente','asc')
-            ->get();
+        $promotor = Auth::user()->idpromotor;
+        if(Auth::user()->rol == 'promotor'){
+            $clientes =  DB::table('clientes as c')
+                ->select('c.idcliente','c.nombrecliente','c.codcliente')
+                ->where('c.idpromotor','=',$promotor)
+                ->where('c.estado','=','a')
+                ->orderBy('c.nombrecliente','asc')
+                ->get();
+        }
+        if(Auth::user()->rol == 'auxiliar' || Auth::user()->rol == 'administrador'){
+            $clientes =  DB::table('clientes as c')
+                ->select('c.idcliente','c.nombrecliente','c.codcliente')
+                ->where('c.estado','=','a')
+                ->orderBy('c.nombrecliente','asc')
+                ->get();
+        }
         $productos = DB::table('productos as p')
             ->select('p.idproducto','p.nombreproducto')
             ->orderBy('p.nombreproducto','asc')
@@ -98,7 +123,7 @@ class PedidosController extends Controller
 
         try {
             DB::beginTransaction();
-            $promotor=Auth::id();
+            $promotor = Auth::user()->idpromotor;
 
             $pedido = New Pedido();
             $pedido->idcliente=(int)$request->input('cliente');
@@ -211,7 +236,7 @@ class PedidosController extends Controller
 
     public function ventas()
     {
-        $promotor=Auth::id();
+        $promotor = Auth::user()->idpromotor;
 
         $productos = DB::table('detallepedidos as d')
             ->join('productos as pr','pr.idproducto','=','d.idproducto')

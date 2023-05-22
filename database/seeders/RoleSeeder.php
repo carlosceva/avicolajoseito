@@ -17,7 +17,10 @@ class RoleSeeder extends Seeder
         $role1 = Role::create(['name'=>'admin']);
         $role2 = Role::create(['name'=>'promotor']);
         $role3 = Role::create(['name'=>'auxiliar']);
-        Permission::create(['name'=>'/bloquear'])->syncRoles([$role1,$role2,$role3]);
-        Permission::create(['name'=>'/promotores'])->syncRoles([$role1,$role2,$role3]);
+
+        Permission::create(['name'=>'BloquearMasivo'])->syncRoles([$role1,$role2]);
+        Permission::create(['name'=>'Promotores'])->syncRoles([$role1,$role2]);
+        Permission::create(['name'=>'Clientes'])->syncRoles([$role1,$role2]);
+        //php artisan db:seed --class=RoleSeeder
     }
 }

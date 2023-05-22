@@ -20,7 +20,9 @@
                 <th>Nombre</th>
                 <th class="d-none d-md-table-cell">Mercado</th>
                 <th>Estado</th>
-                <th>Accion</th>
+                @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+                    <th>Accion</th>
+                @endif
             </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -37,18 +39,17 @@
                             inactivo
                         @endif
                     </td>
-                    
+                    @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
                     <td class="text-center">
                         <div class="form-check form-switch">
                             <form method="POST" action="{{ route('bloquear.update', $b->idcliente) }}">
                                 @method('PATCH')
                                 @csrf
-                                <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($b->estado == 'i') ? '' : 'checked' }}>
-                                
+                                <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($b->estado == 'i') ? '' : 'checked' }}>  
                             </form>
                         </div>
-                        
                     </td>
+                    @endif
                 </tr>
             @endforeach
             </tbody>

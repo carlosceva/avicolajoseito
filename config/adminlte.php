@@ -309,7 +309,7 @@ return [
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'can'  => 'administrador',
         ],
         [
             'text'    => 'PEDIDOS',
@@ -356,6 +356,7 @@ return [
                     'icon' => 'fa fa-user-slash',
                     'id' => 'cevaclass',
                     'shift' => 'ml-4',
+                    'can' => 'BloquearMasivo'
                 ],
             ],
         ],
@@ -363,18 +364,21 @@ return [
         [
             'text'    => 'REGISTRO DE USUARIOS',
             'icon' => 'fa fa-address-card',
+            'can' => 'Clientes',
             'submenu' => [
                 [
                     'text' => 'Gestionar promotores',
                     'url'  => '/promotores',
                     'icon' => 'fas fa-fw fa-user',
                     'shift' => 'ml-4',
+                    'can' => 'Promotores',
                 ],
                 [
                     'text' => 'Gestionar clientes',
                     'url'  => '/client',
                     'icon' => 'fas fa-fw fa-user',
                     'shift' => 'ml-4',
+                    'can' => 'Clientes',
                 ],    
             ],
         ],
