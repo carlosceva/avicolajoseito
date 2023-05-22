@@ -16,9 +16,9 @@ class ClientesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $promotor=Auth::id();
+        $promotor = Auth::user()->idpromotor;
 
         $clientes =  DB::table('clientes as c')
             ->select('c.idcliente','c.nombrecliente','c.codcliente')
@@ -110,7 +110,7 @@ class ClientesController extends Controller
 
     public function todosLosClientes()
     {
-        $clientes = Cliente::orderBy('estado','desc')->get();
-        return view('clientes.index', compact('clientes'));
+        $clientes = Cliente::orderBy('estado','desc')->orderBy('idcliente', 'asc')->get();
+        return view('Clientes.clientes', compact('clientes'));
     }
 }
