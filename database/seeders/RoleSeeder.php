@@ -21,6 +21,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'BloquearMasivo'])->syncRoles([$role1,$role2]);
         Permission::create(['name'=>'Promotores'])->syncRoles([$role1,$role2]);
         Permission::create(['name'=>'Clientes'])->syncRoles([$role1,$role2]);
+        //
         //php artisan db:seed --class=RoleSeeder
     }
 }
