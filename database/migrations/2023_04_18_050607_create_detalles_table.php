@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('descripcion')->nullable();
             $table->integer('idproducto')->unsigned();
             $table->integer('idpedido')->unsigned();
+            $table->string('estado')->nullable();
             $table->foreign('idproducto')->references('idproducto')->on('productos');
             $table->foreign('idpedido')->references('idpedido')->on('pedidos');
             $table->timestamps();

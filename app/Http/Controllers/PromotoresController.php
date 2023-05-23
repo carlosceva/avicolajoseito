@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\Permission\Models\Role;
 
 class PromotoresController extends Controller
 {
@@ -49,6 +50,9 @@ class PromotoresController extends Controller
             //$Usuario->password=Hash::make($request->input('123456789'));
             $Usuario->password=Hash::make($request->input('password'));
             $Usuario->save();
+
+            //$Usuario->assignRole('promotor');
+
             DB::commit();
             session()->flash('status','Registro guardado exitosamente!!');
         }catch (\Exception $e){

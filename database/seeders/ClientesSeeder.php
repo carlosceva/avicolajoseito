@@ -37,7 +37,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$melmutualista[$i],
                 'codcliente'=>$codmelmutualista[$i],
                 'estado'=>'a',
-                'idpromotor'=> 12,
+                'iduser'=> 12,
                 'idmercado'=> 19
             ]);
         };
@@ -49,7 +49,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$melbraseros[$i],
                 'codcliente'=>$codmelbraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 12,
+                'iduser'=> 12,
                 'idmercado'=> 39
             ]);
         };
@@ -61,7 +61,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$mel25mayo[$i],
                 'codcliente'=>$codmel25mayo[$i],
                 'estado'=>'a',
-                'idpromotor'=> 12,
+                'iduser'=> 12,
                 'idmercado'=> 37
             ]);
         };
@@ -74,7 +74,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseAntLosPozos[$i],
                 'codcliente'=>$codjoseAntLosPozos[$i],
                 'estado'=>'a',
-                'idpromotor'=> 13,
+                'iduser'=> 13,
                 'idmercado'=> 20
             ]);
         };
@@ -86,7 +86,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseBraseros[$i],
                 'codcliente'=>$codjoseBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 13,
+                'iduser'=> 13,
                 'idmercado'=> 39
             ]);
         };
@@ -98,7 +98,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseMutualista[$i],
                 'codcliente'=>$codjoseMutualista[$i],
                 'estado'=>'a',
-                'idpromotor'=> 13,
+                'iduser'=> 13,
                 'idmercado'=> 19
             ]);
         };
@@ -110,7 +110,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseNuevoLosPozos[$i],
                 'codcliente'=>$codjoseNuevoLosPozos[$i],
                 'estado'=>'a',
-                'idpromotor'=> 13,
+                'iduser'=> 13,
                 'idmercado'=> 17
             ]);
         };
@@ -123,7 +123,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloBraseros[$i],
                 'codcliente'=>$codconsueloBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 10,
+                'iduser'=> 10,
                 'idmercado'=> 39
             ]);
         };
@@ -135,7 +135,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloEstArg[$i],
                 'codcliente'=>$codconsueloEstArg[$i],
                 'estado'=>'a',
-                'idpromotor'=> 10,
+                'iduser'=> 10,
                 'idmercado'=> 40
             ]);
         };
@@ -147,7 +147,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloGuapilo[$i],
                 'codcliente'=>$codconsueloGuapilo[$i],
                 'estado'=>'a',
-                'idpromotor'=> 10,
+                'iduser'=> 10,
                 'idmercado'=> 12
             ]);
         };
@@ -159,7 +159,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloSanJuan[$i],
                 'codcliente'=>$codconsueloSanJuan[$i],
                 'estado'=>'a',
-                'idpromotor'=> 10,
+                'iduser'=> 10,
                 'idmercado'=> 41
             ]);
         };
@@ -171,7 +171,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloSinMerc[$i],
                 'codcliente'=>$codconsueloSinMerc[$i],
                 'estado'=>'a',
-                'idpromotor'=> 10,
+                'iduser'=> 10,
                 'idmercado'=> 42
             ]);
         };
@@ -183,7 +183,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloVilla[$i],
                 'codcliente'=>$codconsueloVilla[$i],
                 'estado'=>'a',
-                'idpromotor'=> 10,
+                'iduser'=> 10,
                 'idmercado'=> 7
             ]);
         };
@@ -196,7 +196,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$fannyBraseros[$i],
                 'codcliente'=>$codfannyBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 11,
+                'iduser'=> 11,
                 'idmercado'=> 39
             ]);
         };
@@ -208,7 +208,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$fannyNvoLosPozos[$i],
                 'codcliente'=>$codfannyNvoLosPozos[$i],
                 'estado'=>'a',
-                'idpromotor'=> 11,
+                'iduser'=> 11,
                 'idmercado'=> 17
             ]);
         };
@@ -220,7 +220,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$fannySatelite[$i],
                 'codcliente'=>$codfannySatelite[$i],
                 'estado'=>'a',
-                'idpromotor'=> 11,
+                'iduser'=> 11,
                 'idmercado'=> 31
             ]);
         };
@@ -233,7 +233,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$richardBraseros[$i],
                 'codcliente'=>$codrichardBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 8,
+                'iduser'=> 8,
                 'idmercado'=> 39
             ]);
         };
@@ -245,7 +245,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$richardRocaCoronado[$i],
                 'codcliente'=>$codrichardRocaCoronado[$i],
                 'estado'=>'a',
-                'idpromotor'=> 8,
+                'iduser'=> 8,
                 'idmercado'=> 24
             ]);
         };
@@ -258,7 +258,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarAbasto[$i],
                 'codcliente'=>$codwilmarAbasto[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'iduser'=> 9,
                 'idmercado'=> 30
             ]);
         };
@@ -270,7 +270,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarBraseros[$i],
                 'codcliente'=>$codwilmarBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'iduser'=> 9,
                 'idmercado'=> 39
             ]);
         };
@@ -282,7 +282,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarNvaRamada[$i],
                 'codcliente'=>$codwilmarNvaRamada[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'iduser'=> 9,
                 'idmercado'=> 28
             ]);
         };
@@ -294,7 +294,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarNvoAbasto[$i],
                 'codcliente'=>$codwilmarNvoAbasto[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'iduser'=> 9,
                 'idmercado'=> 29
             ]);
         };

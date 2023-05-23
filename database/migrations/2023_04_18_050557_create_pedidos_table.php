@@ -21,8 +21,8 @@ return new class extends Migration
             $table->integer('celular')->nullable();
             $table->string('puesto')->nullable();
             $table->string('observaciones')->nullable();
-            $table->string('estado');
-            $table->integer('iduser')->unsigned();
+            $table->string('estado')->nullable();
+            $table->unsignedBigInteger('iduser');
             $table->integer('idmercado')->unsigned();
             $table->timestamps();
         });
@@ -36,7 +36,8 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->increments('idpedido');
             $table->integer('idcliente')->unsigned();
-            $table->integer('iduser')->unsigned();
+            $table->unsignedBigInteger('iduser');
+            $table->string('estado')->nullable();
             $table->string('observacion')->nullable();
             $table->foreign('idcliente')->references('idcliente')->on('clientes');
             $table->foreign('iduser')->references('id')->on('users');

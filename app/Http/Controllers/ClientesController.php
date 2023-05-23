@@ -26,6 +26,7 @@ class ClientesController extends Controller
             ->where('c.iduser','=',$promotor)
             ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
             ->orderBy('c.estado','desc')
+            ->orderBy('c.idcliente', 'asc')
             ->get();
 
         return view('Clientes.index',['clientes'=>$clientes]);
