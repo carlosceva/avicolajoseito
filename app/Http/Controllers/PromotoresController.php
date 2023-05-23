@@ -16,8 +16,8 @@ class PromotoresController extends Controller
      */
     public function index()
     {
-        $promotores = DB::table('promotores as p')
-            ->select('idpromotor','codpromotor','nombrepromotor','celular','correo','direccion')
+        $promotores = DB::table('users')
+            ->select('id','name','email')
             ->get();
         return view('Promotores.index',['promotores'=>$promotores]);
     }
@@ -42,23 +42,17 @@ class PromotoresController extends Controller
 
         try {
             DB::beginTransaction();
-            $promotor = New Promotor();
-            $promotor->nombrepromotor=$request->input('nombrepromotor');
-            $promotor->codpromotor=$request->input('codpromotor');
-            $promotor->celular=$request->input('celular');
-            $promotor->correo=$request->input('correo');
-            $promotor->direccion=$request->input('direccion');
-            $promotor->save();
-
             $Usuario = New User();
             $Usuario->name=$request->input('nombrepromotor');
             $Usuario->email=$request->input('correo');
+            $Usuario->rol='promotor';
             //$Usuario->password=Hash::make($request->input('123456789'));
-            $Usuario->password=Hash::make('123456789');
+            $Usuario->password=Hash::make($request->input('password'));
             $Usuario->save();
             DB::commit();
+            session()->flash('status','Registro guardado exitosamente!!');
         }catch (\Exception $e){
-            //dd($e);
+            dd($e);
         }
 
         return Redirect::to('promotores');

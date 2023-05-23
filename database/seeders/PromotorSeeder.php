@@ -13,6 +13,7 @@ class PromotorSeeder extends Seeder
      */
     public function run(): void
     {
-
+        //Promotor::create(['nombrepromotor'=>'Administrador','codpromotor'=>'','celular'=>'','correo'=>'admin@joseito.com','direccion'=>'']);
+        
     }
 }

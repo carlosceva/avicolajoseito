@@ -3,11 +3,7 @@
 @section('title', 'Mis clientes')
 
 @section('content_header')
-@if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-    <div class="float-right d-sm-block">
-            <a href="{{url('clientes/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
-    </div>
-@endif
+
     <h1>Mis clientes</h1>
 @stop
 

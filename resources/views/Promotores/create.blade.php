@@ -28,30 +28,18 @@
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label for="nombrepromotor">Nombre Promotor</label>
-                        <input type="text" name="nombrepromotor" id="nombrepromotor" class="form-control" placeholder="Ingresar promotor" value="{{old('nombrepromotor')}}">
-                    </div>
-                    <div class="col-md-6">
-                            <label for="codpromotor" class="form-label">Código Promotor</label>
-                        <input type="text" name="codpromotor" id="codpromotor" class="form-control" placeholder="Ingresar codigo" value="{{old('codpromotor')}}">
-                    </div>
-                </div>
-
-                <!-- Fila celular, correo electronico -->
-                <div class="form-group row">
-                    <div class="col-md-6">
-                        <label for="celular">Celular</label>
-                        <input type="text" name="celular" id="celular" class="form-control" placeholder="Ingresar celular" value="{{old('celular')}}" >
+                        <input type="text" name="nombrepromotor" id="nombrepromotor" class="form-control" placeholder="Ingresar promotor" required>
                     </div>
                     <div class="col-md-6">
                         <label for="correo" class="form-label">Correo electronico</label>
-                        <input type="text" name="correo" id="correo" class="form-control" placeholder="Ingresar correo electronico" value="{{old('correo')}}" required>
+                        <input type="text" name="correo" id="correo" class="form-control" placeholder="Ingresar correo electronico" required>
                     </div>
                 </div>
 
                 <!-- Fila Direccion -->
                 <div class="form-group">
-                    <label for="direccion"> Dirección</label>
-                    <input type="text"  name="direccion" id="direccion" class="form-control" placeholder="Ingresar direccion" value="{{old('direccion')}}">
+                    <label for="password"> Password</label>
+                    <input type="password"  name="password" id="password" class="form-control" placeholder="Ingresar password" required>
                 </div>
 
                 <!-- Fila Botones Guardar y cancelar -->

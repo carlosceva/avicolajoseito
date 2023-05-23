@@ -21,7 +21,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <form action="{{url('clientes')}}" method="post">
+            <form action="{{route('client.store')}}" method="post">
                 @csrf
 
                 <!-- Fila cliente, codigo cliente y celular -->
@@ -51,7 +51,7 @@
                             <select name="promotor" id="promotor" class="form-control" required>
                             <option value="">Seleccionar promotor</option>
                             @foreach($promotores as $pro)    
-                                <option value="{{$pro->idpromotor}}">{{$pro->nombrepromotor}}</option>
+                                <option value="{{$pro->id}}">{{$pro->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -78,7 +78,7 @@
                 <!-- Fila Botones Guardar y cancelar -->
                 <div class="w3-row text-center" id="">
                     <button type="submit" id="register" class="btn btn-success col-md-3">Guardar</button>
-                    <a href="{{url('clientes')}}" class="btn btn-danger col-md-3">Cancelar</a>
+                    <a href="{{route('client.all')}}" class="btn btn-danger col-md-3">Cancelar</a>
                 </div>
             </form>
         </div>

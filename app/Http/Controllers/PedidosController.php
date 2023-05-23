@@ -37,14 +37,14 @@ class PedidosController extends Controller
 
     public function index()
     {
-        $promotor = Auth::user()->idpromotor;
+        $promotor = Auth::user()->id;
         
         if(Auth::user()->rol == 'promotor'){
         $pedidos = DB::table('pedidos as p')
             ->join('clientes as c','p.idcliente','=','c.idcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->select('p.idpedido','p.idcliente','p.idpromotor','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
-            ->where('p.idpromotor','=',$promotor)
+            ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
+            ->where('p.iduser','=',$promotor)
             ->orderBy('p.idpedido','desc')
             ->get();
         $detalles = DB::table('detallepedidos as d')
@@ -57,7 +57,7 @@ class PedidosController extends Controller
             $pedidos = DB::table('pedidos as p')
             ->join('clientes as c','p.idcliente','=','c.idcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->select('p.idpedido','p.idcliente','p.idpromotor','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
+            ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
             ->orderBy('p.idpedido','desc')
             ->get();
         $detalles = DB::table('detallepedidos as d')
@@ -75,11 +75,11 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        $promotor = Auth::user()->idpromotor;
+        $promotor = Auth::user()->id;
         if(Auth::user()->rol == 'promotor'){
             $clientes =  DB::table('clientes as c')
                 ->select('c.idcliente','c.nombrecliente','c.codcliente')
-                ->where('c.idpromotor','=',$promotor)
+                ->where('c.iduser','=',$promotor)
                 ->where('c.estado','=','a')
                 ->orderBy('c.nombrecliente','asc')
                 ->get();
@@ -123,11 +123,11 @@ class PedidosController extends Controller
 
         try {
             DB::beginTransaction();
-            $promotor = Auth::user()->idpromotor;
+            $promotor = Auth::user()->id;
 
             $pedido = New Pedido();
             $pedido->idcliente=(int)$request->input('cliente');
-            $pedido->idpromotor=$promotor;
+            $pedido->iduser=$promotor;
             $pedido->observacion=$request->input('observacion');
             $pedido->save();
 
@@ -236,13 +236,13 @@ class PedidosController extends Controller
 
     public function ventas()
     {
-        $promotor = Auth::user()->idpromotor;
+        $promotor = Auth::user()->id;
 
         $productos = DB::table('detallepedidos as d')
             ->join('productos as pr','pr.idproducto','=','d.idproducto')
             ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
             ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
-            ->where('pe.idpromotor','=',$promotor)
+            ->where('pe.iduser','=',$promotor)
             ->groupBy('pr.nombreproducto')
             ->orderBy('pr.nombreproducto')
             ->get();
@@ -251,7 +251,7 @@ class PedidosController extends Controller
             ->join('productos as pr','pr.idproducto','=','d.idproducto')
             ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
             ->select(DB::raw('sum(d.cantidad) as cant'))
-            ->where('pe.idpromotor','=',$promotor)
+            ->where('pe.iduser','=',$promotor)
             ->first();
 
         $producto = $productos->pluck('producto');

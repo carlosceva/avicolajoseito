@@ -52,5 +52,8 @@ class MercadosSeeder extends Seeder
         Mercado::create(['nombremercado'=>'25 DE MAYO','dirmercado'=>'']);
         Mercado::create(['nombremercado'=>'EL CARMEN KM 9','dirmercado'=>'']);
         Mercado::create(['nombremercado'=>'Braseria y salteñeria','dirmercado'=>'']);
+        Mercado::create(['nombremercado'=>'Est Argentina','dirmercado'=>'']);
+        Mercado::create(['nombremercado'=>'San Juan','dirmercado'=>'']);
+        Mercado::create(['nombremercado'=>'Sin mercado','dirmercado'=>'']);
     }
 }

@@ -14,21 +14,8 @@ class ClientesSeeder extends Seeder
      */
     public function run(): void
     {
-//        //PROMOTOR RICHARD
-//        Cliente::create(['codcliente'=>'101636','nombrecliente'=>'VERONICA QUIROZ MAMANI','estado'=>'a','idpromotor'=>'1','idmercado'=>'1']);
-//        Cliente::create(['codcliente'=>'101805','nombrecliente'=>'ALEX EDUARDO CABALLERO','estado'=>'a','idpromotor'=>'1','idmercado'=>'1']);
-//        Cliente::create(['codcliente'=>'101637','nombrecliente'=>'WILSON RIVAS MEDRANO','estado'=>'a','idpromotor'=>'1','idmercado'=>'1']);
-//        Cliente::create(['codcliente'=>'101525','nombrecliente'=>'FABIOLA CARLA AGUILAR','estado'=>'a','idpromotor'=>'1','idmercado'=>'2']);
-//        Cliente::create(['codcliente'=>'100520','nombrecliente'=>'TERESA POMA','estado'=>'a','idpromotor'=>'1','idmercado'=>'2']);
-//
-//        //PROMOTOR WILMAR
-//        Cliente::create(['codcliente'=>'100400','nombrecliente'=>'MAIRA CORONEL','estado'=>'a','idpromotor'=>'2','idmercado'=>'9']);
-//        Cliente::create(['codcliente'=>'101535','nombrecliente'=>'JAIME TERRAZAS','estado'=>'a','idpromotor'=>'2','idmercado'=>'22']);
-//        Cliente::create(['codcliente'=>'100896','nombrecliente'=>'NICOL SEJAS','estado'=>'a','idpromotor'=>'2','idmercado'=>'28']);
-//        Cliente::create(['codcliente'=>'101877','nombrecliente'=>'EVANGELINA RODRIGUEZ','estado'=>'a','idpromotor'=>'2','idmercado'=>'29']);
 
-//
-//     //CLIENTES OFICINA
+    // //CLIENTES OFICINA 
     //    $oficina = ['POLLO GOYITA','SALT. PANTANAL','SALT. HAMACIEL','POLLO BISMUCOR','SALT. TARUPESAL','WILDER DELGADILLO CAMPANA','SACURA MECHERO','POLLO ANGELA','MARGARITA ESTRADA','SACURA AMERICA','POLLO AMBORO','SALT. QUIRQUINCHO','SHAWARMAA RAHMAN','SHAWARMA HELMI','SHAWARMA MOHAMED','DEISY ROJAS','POLLO JOSUE','POLLO EL BUEN SAMARITANO','POLLO CITY SUC. 1','POLLO URKUPIÑA','NEYER TOLEDO','RESTAURANT LA BRASIL ','DOCTOR DONNER','MARCELO LA FUENTE','POLLO CARLING Z. 4 ANILLO CENTENARIO','POLLO COQUETO','POLLO SUPER THIAGO'];
     //    $codoficina = ['101198','101501','102465','102484','102533','102549','102372','101831','102444','102371','102322','100718','102408','102413','102407','102131','102234','101510','102472','102582','101538','102152','101347','102389','102431','102391','102168'];
     //    //dd($oficina[1]);
@@ -42,44 +29,44 @@ class ClientesSeeder extends Seeder
     //        ]);
     //     };
 
-    //CLIENTES MELISA  8        
-    //    $melmutualista =['MIRTHA VILLARRUEL HUANCA','SANDRA ISABEL ARIAS CARBAJAL','MELVY TITO TARIFA','ALEJANDRA ENRIQUEZ MORALES','NELY RIVERO MENACHO','POLLO SOLARES','CARMEN MORALES','LUCIA ARANCIBIA MCDO MUTUALISTA','MILENA ROBLES MCDO MUTUALISTA','ROXANA SILES','DIMELSA VELASCO mutualista 60986089-72695185','MERY PEREZ mutualista','MARINA LOPEZ mutualista','MARTHA PEREZ mutualista','YOVANNA LENIS TOLA CALAT 77604520','JUANA JULIA COCA mutual 60882319-67887661','CAROLA CASTRO mutualista 76071602-61340118','SABINA NEGRETE','LUCY CAMPOS mutualista','MIRIAN TORRICO mutualista','KAREN ARIAS mutualista 76012794','LOURDES CUELLAR mutualista','SRA TESORO','MAYRA CRUZ ROBLES','YANETH QUIROGA -  MUTUALISTA','SHIRLEY PEREIRA mutualista','YOVANA TORRICO 79803020','LEONARDO PEÑA mutualista 70918739','DANIELA FLORA PEREZ CABRERA mutualista 76697087','POLLO PIO LINDO (ROSALIA ESCALERA) mutualista','POLLO SANTA BRASA av alemana 8vo anillo 61367459','YENNY SILVA mutualista','POLLO RAP 2do anillo v de cotoca y brasil 73149996','YOLANDA RIVERA cerca matadero (paga agapito albañil)','SERGIO  centenario 3er y 4to anillo c/10 casa 5','NAPOLEON CABRERA mutualista','DORIS SOSA mutualista','LORENA PARAVICINI','MARCELO DAVALOS - MUTUALISTA','WILBER HUANCA mutualista','ROMILDA PEÑA  mutualista','VANESA ARIAS PONCE- MUTIATISTA','ROBERTO IVAN SAAVEDRA MUTUALISTA','MARY ZENTENO ROCHA MCDO MUTUALISTA','RONALD CONDORI PEREZ'];
-    //    $codmelmutualista=['102093','102169','102663','102664','102260','102319','102347','102383','102489','102619','100009','100013','100018','100019','100020','100021','100023','100030','100031','100038','100041','100044','100207','100243','100323','100325','100355','100405','100493','100521','100524','100534','100566','100590','100693','100694','100742','101131','101167','101253','101312','101884','101966','102004','102066'];
-    //    for ($i=0 ; $i< count($melmutualista) ; $i++){
-    //         DB::table('clientes')->insert([
-    //             'nombrecliente'=>$melmutualista[$i],
-    //             'codcliente'=>$codmelmutualista[$i],
-    //             'estado'=>'a',
-    //             'idpromotor'=> 8,
-    //             'idmercado'=> 19
-    //         ]);
-    //     };
+    //CLIENTES MELISA  12        
+       $melmutualista =['MIRTHA VILLARRUEL HUANCA','SANDRA ISABEL ARIAS CARBAJAL','MELVY TITO TARIFA','ALEJANDRA ENRIQUEZ MORALES','NELY RIVERO MENACHO','POLLO SOLARES','CARMEN MORALES','LUCIA ARANCIBIA MCDO MUTUALISTA','MILENA ROBLES MCDO MUTUALISTA','ROXANA SILES','DIMELSA VELASCO mutualista 60986089-72695185','MERY PEREZ mutualista','MARINA LOPEZ mutualista','MARTHA PEREZ mutualista','YOVANNA LENIS TOLA CALAT 77604520','JUANA JULIA COCA mutual 60882319-67887661','CAROLA CASTRO mutualista 76071602-61340118','SABINA NEGRETE','LUCY CAMPOS mutualista','MIRIAN TORRICO mutualista','KAREN ARIAS mutualista 76012794','LOURDES CUELLAR mutualista','SRA TESORO','MAYRA CRUZ ROBLES','YANETH QUIROGA -  MUTUALISTA','SHIRLEY PEREIRA mutualista','YOVANA TORRICO 79803020','LEONARDO PEÑA mutualista 70918739','DANIELA FLORA PEREZ CABRERA mutualista 76697087','POLLO PIO LINDO (ROSALIA ESCALERA) mutualista','POLLO SANTA BRASA av alemana 8vo anillo 61367459','YENNY SILVA mutualista','POLLO RAP 2do anillo v de cotoca y brasil 73149996','YOLANDA RIVERA cerca matadero (paga agapito albañil)','SERGIO  centenario 3er y 4to anillo c/10 casa 5','NAPOLEON CABRERA mutualista','DORIS SOSA mutualista','LORENA PARAVICINI','MARCELO DAVALOS - MUTUALISTA','WILBER HUANCA mutualista','ROMILDA PEÑA  mutualista','VANESA ARIAS PONCE- MUTIATISTA','ROBERTO IVAN SAAVEDRA MUTUALISTA','MARY ZENTENO ROCHA MCDO MUTUALISTA','RONALD CONDORI PEREZ'];
+       $codmelmutualista=['102093','102169','102663','102664','102260','102319','102347','102383','102489','102619','100009','100013','100018','100019','100020','100021','100023','100030','100031','100038','100041','100044','100207','100243','100323','100325','100355','100405','100493','100521','100524','100534','100566','100590','100693','100694','100742','101131','101167','101253','101312','101884','101966','102004','102066'];
+       for ($i=0 ; $i< count($melmutualista) ; $i++){
+            DB::table('clientes')->insert([
+                'nombrecliente'=>$melmutualista[$i],
+                'codcliente'=>$codmelmutualista[$i],
+                'estado'=>'a',
+                'idpromotor'=> 12,
+                'idmercado'=> 19
+            ]);
+        };
 
-    //     $melbraseros = ['CHICKEN SPRINFIELD','z POLLO RIZZIO av lujan  6to 71617975','z GRAN MURALLA los lotes 70084141','z POLLO YESSICA centenario 3 al 4to anillo 65042934','z POLLO PIKO RICO piray 68838058','REST. EDIL TERCEROS Fono:'];
-    //     $codmelbraseros = ['102621','100442','100484','100503','100536','101705'];
-    //     for ($i=0 ; $i< count($melbraseros) ; $i++){
-    //         DB::table('clientes')->insert([
-    //             'nombrecliente'=>$melbraseros[$i],
-    //             'codcliente'=>$codmelbraseros[$i],
-    //             'estado'=>'a',
-    //             'idpromotor'=> 8,
-    //             'idmercado'=> 39
-    //         ]);
-    //     };
+        $melbraseros = ['CHICKEN SPRINFIELD','z POLLO RIZZIO av lujan  6to 71617975','z GRAN MURALLA los lotes 70084141','z POLLO YESSICA centenario 3 al 4to anillo 65042934','z POLLO PIKO RICO piray 68838058','REST. EDIL TERCEROS Fono:'];
+        $codmelbraseros = ['102621','100442','100484','100503','100536','101705'];
+        for ($i=0 ; $i< count($melbraseros) ; $i++){
+            DB::table('clientes')->insert([
+                'nombrecliente'=>$melbraseros[$i],
+                'codcliente'=>$codmelbraseros[$i],
+                'estado'=>'a',
+                'idpromotor'=> 12,
+                'idmercado'=> 39
+            ]);
+        };
 
-    //     $mel25mayo = ['RUBEN ESCOBAR','VICTOR BAUTISTA','CRISTINA QUISBERT abasto','RUBEN VALLEJOS abasto','KATERINE DIAZ abasto','DORA CABRERA','CRISTINA SALAZAR abasto','SOLEDAD CHAYAPA','NICOL VALDEZ','JHONNY CONTRERAS','VANIA GUTIERREZ 68821714','Z - JUDITH CARDOZO abasto 76661320','JIMENA JAUJA (deuda antigua)','ANA MONTAÑO TAPIA abasto','DELICIA ARNEZ mcdo abasto','SANTA IVANA ESCOBAR GUTIERREZ 75353980'];
-    //     $codmel25mayo = ['100016','100236','100237','100240','100241','100268','100269','100272','100378','100426','100604','100618','100646','100905','101039','101742'];
-    //     for ($i=0 ; $i< count($mel25mayo) ; $i++){
-    //         DB::table('clientes')->insert([
-    //             'nombrecliente'=>$mel25mayo[$i],
-    //             'codcliente'=>$codmel25mayo[$i],
-    //             'estado'=>'a',
-    //             'idpromotor'=> 8,
-    //             'idmercado'=> 37
-    //         ]);
-    //     };
+        $mel25mayo = ['RUBEN ESCOBAR','VICTOR BAUTISTA','CRISTINA QUISBERT abasto','RUBEN VALLEJOS abasto','KATERINE DIAZ abasto','DORA CABRERA','CRISTINA SALAZAR abasto','SOLEDAD CHAYAPA','NICOL VALDEZ','JHONNY CONTRERAS','VANIA GUTIERREZ 68821714','Z - JUDITH CARDOZO abasto 76661320','JIMENA JAUJA (deuda antigua)','ANA MONTAÑO TAPIA abasto','DELICIA ARNEZ mcdo abasto','SANTA IVANA ESCOBAR GUTIERREZ 75353980'];
+        $codmel25mayo = ['100016','100236','100237','100240','100241','100268','100269','100272','100378','100426','100604','100618','100646','100905','101039','101742'];
+        for ($i=0 ; $i< count($mel25mayo) ; $i++){
+            DB::table('clientes')->insert([
+                'nombrecliente'=>$mel25mayo[$i],
+                'codcliente'=>$codmel25mayo[$i],
+                'estado'=>'a',
+                'idpromotor'=> 12,
+                'idmercado'=> 37
+            ]);
+        };
 
-        //CLIENTES JOSE LUIS 9
+        //CLIENTES JOSE LUIS 13
         $joseAntLosPozos = ['CARMINIA RIOJA MUÑOZ','TATIANA MARCELA MONTAÑO CHUMACERO','KATHIA JUANY NOGALES','KATTUSKA YAMILET TERRAZAS ALARCON','PATRICIA AREABA POZOS ANTIGUO','SAIDA BANEGAS los pozos','MERY LIMA los pozos 78419156','YENNY NINA Los Pozos','OMAR BUSTAMANTE Los Pozos','BRIANDA FERNANDEZ','ERLINDA PANTOJA los pozos 75694286','YAQUELIN ROMERO FLORES los pozos','OLGA MONTAÑO 65042582','JORGE MELGAR los pozos','CARMEN TORRICO los pozos 73100444','BERTHA VARGAS los pozos','MARIELA MOYA','OLGA HINOJOSA','PATRICIA VARGAS MCDO POZOS','ROXANA COSTAS los pozos 74637901','MARGARITA BANEGAS 70015393-70904385-63478932','CARLOS GONZALES los pozos','ELIZABETH CORDOVA  (hermana de estela moron)','TERESA PANTOJA los pozos 73681657','FELIPA QUIROGA','CARMEN BANEGAS','YANETH TERRAZAS Los Pozos','MARGARITA RIOS','BETTY TERCEROS -LOS POZOS  AGENCIA 2 69045750','DANIEL DIAZ','CARMEN CARVAJAL','DAVID ARIAS','GARY PARADA (pozos)','REINA VALE los pozos 71364057','PEDRO GONZALES los pozos','BREIDY MARTINEZ los pozos 76626799','JUAN CARLOS RAMOS ZARATE','LUIS ENRIQUE GARCIA MENDEZ los pozos','GLADYS DE VARGAS los pozos','ANTONIA ANDIA (Nvo Merc. los Pozos)','ELIO ALVAREZ los pozos','GLADYS PACO -LOS POZOS','ESTHER VARGAS los pozos','ALCIRA GARCIA los pozos','MARIA ELENA FLOREZ los pozos','ALICIA MERCADO -SRA ELSA warnes 773551626','LILIANA RODRIGUEZ los pozos','ANA GABRIELA TAPIA FERNANADEZ los pozos 75383537','AIDA PANTOJA los pozos','JOSE ANTONIO JIMENES JUANES 72664999','CLAUDIA MENDOZA LIMA','SONIA GRIMALDES PUMA','RODRIGO PAREDES ROJAS 62013585','ROCIO GARCIA - POZOS','CARMEN ROSA PANTOJA','FIDELIA SAIGUA ROMERO 69136667','DANIEL JOB MIRANDA QUINTEROS','CRISTINA SOLAR'];
         $codjoseAntLosPozos = ['102649','102324','102337','102353','102356','100159','100163','100167','100168','100169','100174','100178','100179','100181','100182','100183','100184','100186','100188','100190','100191','100193','100197','100198','100199','100200','100201','100202','100204','100276','100332','100407','100409','100428','100460','100469','100515','100671','100703','100791','100846','101066','101075','101085','101151','101396','101436','101469','101620','101668','101772','101840','101871','101889','101892','102034','102062','102071'];
         for ($i=0 ; $i< count($joseAntLosPozos) ; $i++){
@@ -87,7 +74,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseAntLosPozos[$i],
                 'codcliente'=>$codjoseAntLosPozos[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'idpromotor'=> 13,
                 'idmercado'=> 20
             ]);
         };
@@ -99,7 +86,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseBraseros[$i],
                 'codcliente'=>$codjoseBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'idpromotor'=> 13,
                 'idmercado'=> 39
             ]);
         };
@@ -111,7 +98,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseMutualista[$i],
                 'codcliente'=>$codjoseMutualista[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'idpromotor'=> 13,
                 'idmercado'=> 19
             ]);
         };
@@ -123,12 +110,12 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$joseNuevoLosPozos[$i],
                 'codcliente'=>$codjoseNuevoLosPozos[$i],
                 'estado'=>'a',
-                'idpromotor'=> 9,
+                'idpromotor'=> 13,
                 'idmercado'=> 17
             ]);
         };
 
-        //CLIENTES CONSUELO 6
+        //CLIENTES CONSUELO 10
         $consueloBraseros = ['REST. EL BUEN GUSTO - COTOCA','ERWIN PAUL PEREIRA HOYOS','MAICOL RICHARD TORRICO AÑEZ','OSCAR FERNANDO LINARES PAZ','CARLA LORENA NATES @','TU ESTACION  FOOD','PACUMUTOS EL DORADO','DR POLLO','LUCY FAST FOOD','MARISOL MENDEZ','WALTER OBED DORADO ZAMORA -7ABRIL','DON GALLO DE CARLOS ARANCIBIA @  78162486','DEUDATA MADINA VIDAL','POLLOS ROLANDO BAUTISTA @ LUJAN','ALDO FUENTES VILARREAL','CARLOS MORENO CERRATE','POLLO DOÑA BERTHA','DANITZA GAMARRA','POLLO  CELIA LOTES','POLLO CALLE 7 @','POLLO A LA LEÑA EL BUEN SABOR @','ROLANDO MENDOZA ORTIZ','POLLO KATERIN @','POLLO ROLANDO MOSCU Cel. 71365716','DR  POLLO - RADIAL 10','POLLO EL BUEN SAMARITANO @'];
         $codconsueloBraseros = ['102647','102654','102657','102658','102659','102672','102678','102685','102686','102688','102143','102264','102458','102502','102515','102516','102530','102532','102548','102595','102602','102645','100880','101272','101344','101510'];
         for ($i=0 ; $i< count($consueloBraseros) ; $i++){
@@ -136,7 +123,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloBraseros[$i],
                 'codcliente'=>$codconsueloBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 6,
+                'idpromotor'=> 10,
                 'idmercado'=> 39
             ]);
         };
@@ -148,7 +135,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloEstArg[$i],
                 'codcliente'=>$codconsueloEstArg[$i],
                 'estado'=>'a',
-                'idpromotor'=> 6,
+                'idpromotor'=> 10,
                 'idmercado'=> 40
             ]);
         };
@@ -160,7 +147,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloGuapilo[$i],
                 'codcliente'=>$codconsueloGuapilo[$i],
                 'estado'=>'a',
-                'idpromotor'=> 6,
+                'idpromotor'=> 10,
                 'idmercado'=> 12
             ]);
         };
@@ -172,7 +159,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloSanJuan[$i],
                 'codcliente'=>$codconsueloSanJuan[$i],
                 'estado'=>'a',
-                'idpromotor'=> 6,
+                'idpromotor'=> 10,
                 'idmercado'=> 41
             ]);
         };
@@ -184,7 +171,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloSinMerc[$i],
                 'codcliente'=>$codconsueloSinMerc[$i],
                 'estado'=>'a',
-                'idpromotor'=> 6,
+                'idpromotor'=> 10,
                 'idmercado'=> 42
             ]);
         };
@@ -196,12 +183,12 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$consueloVilla[$i],
                 'codcliente'=>$codconsueloVilla[$i],
                 'estado'=>'a',
-                'idpromotor'=> 6,
+                'idpromotor'=> 10,
                 'idmercado'=> 7
             ]);
         };
 
-        //CLIENTES FANNY 7
+        //CLIENTES FANNY 11
         $fannyBraseros = ['POLLO CHICKEN HOUS','POLLO ZELAYA  suc 3- MONTERO','POLLO ZELAYA suc 4 - WARNES','SANDWICHERIA WICHES','PUERTO MADERO','JORGE YUCRA BAUTISTA','LOLA FLORES CRUZ','ERICKA LILIANA ARAUZ VACA','POLLO BUENANGO','SALTEÑERIA PATUJU 77072500-69226115','POLLO DOÑA CELIA  -  SATELITE','POLLO ZELAYA  suc 2-  SATELITE 60032230','POLLO PIO PIO @ Zona los Chacos','POLLOS BROILER @','POLLO DOÑA BETTY SATELITE','POLLOS NOEMI @ ZONA LUJAN','BEIMAR MOREIRA LOZAP','SONIA LAURA CAMPOS (LUJAN )','POLLOS GOSEN SATELITE','MARGARITA ESTRADA RIOS','POLLO DOÑA FELY @','POLLO EL CHANEQUE','NERIO SORIA','POLLOS KIKI- RIKI','MAGALY BLASS ZONA TRANSITO','SALTEÑERIA LA PREFERIDA KM 15','POLLO VILLA TUNARI @ ( BATEON )','MARCO ANTONIO MAMANI CONDORI','CHURRASQUERIA AL PASO','POLLOS LLANOS MONTECRISTO','POLLOS LLANOS CHARCAS','NEYZA VALLEJOS HERRERA','DELI POLLO FAST FOOD','MISTER POLLO SATELITE','POLLO SABROSO SATELITE','POLLO URKUPIÑA SATELITE','CATERING CAIROS','EMBUTIDOS IGLU','VERONICA CARBALLO','CHICKEN BURGER 70929411','PATOLANDIA @(Calle Charcas) 76346938','PATOLANDIA @ (monte cristo)-77016160','SALTEÑERIA GUAPURU 8vo anillo final 2agosto 70935155','LINO DURAN  sateite','GREGORIO LLANOS VASQUEZ@ braza b/claveles','POLLO ZELAYA  suc 1-  SATELITE 60032230','POLLO PICON SATELITE - 68968613','POLLO LUJAN @-71616500','POLLO AURORA@'];
         $codfannyBraseros = ['102652','102660','102661','102668','102670','102680','102681','102689','102690','102142','102158','102218','102224','102286','102325','102397','102434','102437','102440','102444','102452','102453','102455','102459','102461','102466','102480','102493','102531','102536','102537','102553','102556','102557','102558','102582','102589','102631','102642','100008','100551','100555','100673','101481','101776','101868','101938','102048','102087'];
         for ($i=0 ; $i< count($fannyBraseros) ; $i++){
@@ -209,7 +196,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$fannyBraseros[$i],
                 'codcliente'=>$codfannyBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 7,
+                'idpromotor'=> 11,
                 'idmercado'=> 39
             ]);
         };
@@ -221,7 +208,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$fannyNvoLosPozos[$i],
                 'codcliente'=>$codfannyNvoLosPozos[$i],
                 'estado'=>'a',
-                'idpromotor'=> 7,
+                'idpromotor'=> 11,
                 'idmercado'=> 17
             ]);
         };
@@ -233,12 +220,12 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$fannySatelite[$i],
                 'codcliente'=>$codfannySatelite[$i],
                 'estado'=>'a',
-                'idpromotor'=> 7,
+                'idpromotor'=> 11,
                 'idmercado'=> 31
             ]);
         };
 
-        //CLIENTES RICHARD 3
+        //CLIENTES RICHARD 8
         $richardBraseros = ['REINA LLANES SALAZAR 71341183','MARIA GENNY ORTIZ DE JUSTINIANO 77629431','ISABEL CHAMBI UREÑA 74513294','ALFREDO CABALLERO (ROBERT)','WENDY ZAMBRANA 68761746','LILIAN SARA CHUVIRU','POLLO PAPAGALLO 2','POLLO A LA LEÑA EL QUEMADINGO','SERGIO DENNIS MOREJON @','SALTEÑERIA UNIVERSAL 71684481','EDWIN FLOREZ MEDRANO 76333720','POLLO SABROSON  @ v.de cotoca 70934401','EDWIN ALVARES @','POLLOS SACURA - SC. AMERICA','POLLOS SACURA -SUC MECHERO','POLLO CHUPALO @','CARLOS JUSTO @','BIG CHICKEN CUMAVI','RESTAURANT LA BRAZIL','SALTEÑERIA FERLI','POLLO CHESTER ZONA PLAN','ALEX MAURICIO VARGAS PAZ - MUYUPAMPA','SALTEÑERIA HAMACIEL CAMPANA','POLLO CITY','POLLO BISMUCOR ZONA PLAN 3000','POLLO CITY 2','ANGEL ENRRIQUE VACA (SABROSON SUC 2) @','SALTEÑERIA TARUPESAL 67738376','POLLO QUEN','POLLO LUIS PEÑA','SALTEÑERIA WILDER DELGADILLO MONTES (contado)','POLLO BRASA CHICKEN sto dumond','HOTEL RADISSON','SALTEÑERIA ARSENAL 73401401 BLOQUEADO POR MAÑOSA','ENTRE CANTARES Y CANTARITOS 73158057','REST. SABORES & COLORES 79914372','SALTEÑERIA LA ESTRELLITA  ZONA R. CORONADO','POLLO NUEVO SIGLO @ (radial 13) 5to anillo 69269999','SALTEÑERIA POLLO LOCO(PAURITO )','POLLO TIO PEPE las americas','POLLOS EL MANA  5to al 6to anillo y 2 de agosto','POLLO CHRIS suarez arana 78033580','POLLO GOYITA  @','POLLO NUEVO SIGLO @ (radial 13 ) 6to anillo 73626666','SALTEÑERIA TAPIA 8vo anillo y virgen de cotoca 73120480','POLLO PALITO','MAGIN FLORES GUZMAN @','POLLO PEKIN @ 16 DE JULIO','POLLO CHRIS @ VIEDMAN 65941530','POLLO MATIUS @ 16DE JULIO RADIAL 10','POLLO HONG KONG @ 7MO ANILLO R/10','POLLO MAMUT @','POLLOS PAPAGALLO RADIAL@ 17/2 6TO ANILLO 78221247','MARY LUZ TORREZ RODAS 72610669','ALITAS KING POLLOS 71072838','POLLOS ALYS -75329335 zona lotes parada 15','POLLO A LA BRAZA LO MAXIMO 70981137','POLLO MILENITA  -71671227','POLLO LOCO (ARIEL NINA ) PLAN','POLLO COTOCA @','POLLO MATIUS SUCURSAL @ 2Nuevo Guapuru 77086102','SALTEÑERIA LAS PALMAS'];
         $codrichardBraseros = ['101300','102058','102103','102108','102163','102653','102655','102665','102666','102183','102199','102208','102235','102371','102372','102376','102396','102400','102412','102424','102426','102427','102465','102472','102484','102485','102486','102533','102543','102544','102549','102604','102605','102126','102067','102074','100594','100641','100663','100756','100841','101126','101198','101222','101343','101576','101671','101764','101773','101801','101891','101915','101918','101940','101942','101944','101945','101948','101987','101995','102032','102035'];
         for ($i=0 ; $i< count($richardBraseros) ; $i++){
@@ -246,7 +233,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$richardBraseros[$i],
                 'codcliente'=>$codrichardBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 3,
+                'idpromotor'=> 8,
                 'idmercado'=> 39
             ]);
         };
@@ -258,12 +245,12 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$richardRocaCoronado[$i],
                 'codcliente'=>$codrichardRocaCoronado[$i],
                 'estado'=>'a',
-                'idpromotor'=> 3,
+                'idpromotor'=> 8,
                 'idmercado'=> 24
             ]);
         };
 
-        //CLIENTES WILMAR 4
+        //CLIENTES WILMAR 9
         $wilmarAbasto = ['CLAUDIA SOLEDAD COCA GUZMAN (ACTIVA )','LUIS ADOLFO LIZARAZU AGUIRRE 70998911','CARLA ESCOBAR ALMENDRAS 60816148','LILY CHAVEZ','NELSON CUEVAS VERAMENO','SULEMA CABRERA abasto 76635874','SOLEDAD ARIAS abasto 75061098','FABIOLA MONTAÑO abasto 71365255','ISABEL USTAREZ','BETTY AREVALO  abasto 76671282','NICOLASA BAUTISTA abasto 76603382','MELANIA CUEVAS abasto 73680331','YANETH CONTRERAS abasto 67824114','KAROLINA QUISBERT abasto 69049186','BLANCA DIAZ abasto 75550640','ELIZA DIAZ abasto 60026703','LOURDES CONTRERAS abasto 70081937','ISABEL RIOS','JULIETA VILLARROEL abasto -77387280','KAREN ARTEAGA','ROSARIO CALLEJAS 78003412','MARGARITA MELGAR abasto','ELIZABETH RIVAS abasto','SHIRLEY MAMANI abasto','CARLA FABIOLA RIVERA  CAMACHO abasto coop 26 78411113','SANDER ESCOBAR abasto puesto 24 62006344-72680874','ALEJANDRA CUELLAR abasto','ALISON GABRIELA ESPADA  ALMENDRAS 60822861','HELEN VALDEZ','CINTYA ARNEZ ARIAS 75086020','PAOLA FLORES','MIRIAN VILLARREAL abasto 75646405','YOVANA JIMENEZ JIMENEZ abasto coop h/27 75306040','GLADYS NINOSKA RENGEL  abasto sur 8 78178307','OSWALDO COCA GUZMAN ( LUCAS )','TOMASA NAVA SERON abasto sur 29','PAOLA ARANIBAR AGUIRRE- 76096058','WENDY OLIVERA DAVILA - ABASTO 78541950','IRENE ZOBEYDA ALDAEN ABASTOSURpuesto1-70392961','NELLY SANTOS abasto campecino 74656787','ERASMO VICENTE USTARES AGUIRRE','MABEL ALMENDRAS C. abasto PUESTO 38 SEC COP 67984349','ESPERANZA LIDIA MALDONADO HINOJOSA abasto 73159875','MARIA ANTONIETA SILES AYALA - ABASTO','ANGEL MEDINA PEREZ - Abasto fono:76098938','ISABEL CHELA SALDIAS 79001726','GABRIELA ALEJANDRA USTARES - ABASTO 75570019','SERAFINA AGUIRRE -ABASTO 61670772','RONALD ESCOBAR abasto 79911472'];
         $codwilmarAbasto = ['102113','102119','102192','102226','102526','100219','100220','100221','100222','100223','100224','100225','100226','100227','100229','100230','100231','100232','100233','100234','100235','100238','100242','100244','100266','100270','100271','100404','100427','100588','101047','101134','101138','101154','101307','101308','101352','101453','101465','101527','101569','101591','101611','101691','101698','101720','101721','101964','102049'];
         for ($i=0 ; $i< count($wilmarAbasto) ; $i++){
@@ -271,7 +258,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarAbasto[$i],
                 'codcliente'=>$codwilmarAbasto[$i],
                 'estado'=>'a',
-                'idpromotor'=> 4,
+                'idpromotor'=> 9,
                 'idmercado'=> 30
             ]);
         };
@@ -283,7 +270,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarBraseros[$i],
                 'codcliente'=>$codwilmarBraseros[$i],
                 'estado'=>'a',
-                'idpromotor'=> 4,
+                'idpromotor'=> 9,
                 'idmercado'=> 39
             ]);
         };
@@ -295,7 +282,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarNvaRamada[$i],
                 'codcliente'=>$codwilmarNvaRamada[$i],
                 'estado'=>'a',
-                'idpromotor'=> 4,
+                'idpromotor'=> 9,
                 'idmercado'=> 28
             ]);
         };
@@ -307,7 +294,7 @@ class ClientesSeeder extends Seeder
                 'nombrecliente'=>$wilmarNvoAbasto[$i],
                 'codcliente'=>$codwilmarNvoAbasto[$i],
                 'estado'=>'a',
-                'idpromotor'=> 4,
+                'idpromotor'=> 9,
                 'idmercado'=> 29
             ]);
         };

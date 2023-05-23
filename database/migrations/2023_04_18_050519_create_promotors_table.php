@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promotores', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('idpromotor');
-            $table->integer('codpromotor')->nullable();
-            $table->string('nombrepromotor');
-            $table->integer('celular')->nullable();
-            $table->string('correo');
-            $table->string('direccion')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('promotores', function (Blueprint $table) {
+        //     $table->engine = 'InnoDB';
+        //     $table->increments('idpromotor');
+        //     $table->integer('codpromotor')->nullable();
+        //     $table->string('nombrepromotor');
+        //     $table->integer('celular')->nullable();
+        //     $table->string('correo');
+        //     $table->string('direccion')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('promotores');
+        // Schema::dropIfExists('promotores');
     }
 };

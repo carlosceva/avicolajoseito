@@ -19,7 +19,7 @@ class BloquearController extends Controller
         $bloqueados =  DB::table('clientes as c')
             ->select('c.idcliente','c.nombrecliente','c.codcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->where('c.idpromotor','=',$promotor)
+            ->where('c.iduser','=',$promotor)
             ->where('c.estado','=','i')
             ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
             ->orderBy('c.nombrecliente','asc')

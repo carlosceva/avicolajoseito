@@ -18,12 +18,12 @@ class ClientesController extends Controller
      */
     public function index(Request $request)
     {
-        $promotor = Auth::user()->idpromotor;
+        $promotor = Auth::user()->id;
 
         $clientes =  DB::table('clientes as c')
             ->select('c.idcliente','c.nombrecliente','c.codcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->where('c.idpromotor','=',$promotor)
+            ->where('c.iduser','=',$promotor)
             ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
             ->orderBy('c.estado','desc')
             ->get();
@@ -36,9 +36,13 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        $promotores = Promotor::orderBy('nombrepromotor', 'asc')->get();
+        $promotores = DB::table('users')
+            ->where('rol','=','promotor')
+            ->orderBy('name','asc')
+            ->get();
+
         $mercados = Mercado::orderBy('nombremercado', 'asc')->get();
-        return view('clientes.create',['promotores'=>$promotores,'mercados'=>$mercados]);
+        return view('Clientes.create',['promotores'=>$promotores,'mercados'=>$mercados]);
     }
 
     /**
@@ -61,7 +65,7 @@ class ClientesController extends Controller
             $cliente->codcliente=$request->input('codcliente');
             $cliente->celular=$request->input('celular');
             $cliente->puesto=$request->input('puesto');
-            $cliente->idpromotor=$request->input('promotor');
+            $cliente->iduser=$request->input('promotor');
             $cliente->idmercado=$request->input('mercado');
             $cliente->observaciones=$request->input('observaciones');
             $cliente->estado = 'a';
@@ -73,7 +77,7 @@ class ClientesController extends Controller
             dd($e);
         }
 
-        return Redirect::to('client');
+        return Redirect::to('clientes');
     }
 
     /**

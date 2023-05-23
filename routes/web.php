@@ -48,6 +48,8 @@ Route::post('/bloquear', [BloquearController::class,'store'])->name('bloquear.st
 //Route::get('/ventas',[PedidosController::class,'ventas']);
 Route::resource('/misclientes',ClientesController::class);
 Route::get('/clientes',[ClientesController::class,'todosLosClientes'])->name('client.all');
+Route::get('/clientes/create',[ClientesController::class,'create'])->name('client.create');
+Route::post('/clientes/create',[ClientesController::class,'store'])->name('client.store');
 
 Route::get('/pedidos/{pedido}/edit',[PedidosController::class,'edit'])->name('pedidos.edit');
 Route::get('/pedidos/{detalle}/detalle',[PedidosController::class,'detalle'])->name('pedidos.detalle');

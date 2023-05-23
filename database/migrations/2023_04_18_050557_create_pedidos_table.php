@@ -22,24 +22,24 @@ return new class extends Migration
             $table->string('puesto')->nullable();
             $table->string('observaciones')->nullable();
             $table->string('estado');
-            $table->integer('idpromotor')->unsigned();
+            $table->integer('iduser')->unsigned();
             $table->integer('idmercado')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('clientes',function ($table)
         {
-            $table->foreign('idpromotor')->references('idpromotor')->on('promotores');
+            $table->foreign('iduser')->references('id')->on('users');
             $table->foreign('idmercado')->references('idmercado')->on('mercados');
         });
         Schema::create('pedidos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('idpedido');
             $table->integer('idcliente')->unsigned();
-            $table->integer('idpromotor')->unsigned();
+            $table->integer('iduser')->unsigned();
             $table->string('observacion')->nullable();
             $table->foreign('idcliente')->references('idcliente')->on('clientes');
-            $table->foreign('idpromotor')->references('idpromotor')->on('promotores');
+            $table->foreign('iduser')->references('id')->on('users');
             $table->timestamps();
         });
     }
