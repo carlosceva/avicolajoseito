@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-4">
                             <label for="promotor">Promotor</label>
-                            <select name="promotor" id="promotor" class="form-control select2" required>
+                            <select name="promotor" id="promotor" class="form-control" required>
                             <option value="">Seleccionar promotor</option>
                             @foreach($promotores as $pro)    
                                 <option value="{{$pro->id}}">{{$pro->name}}</option>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-md-4">
                             <label for="mercado">Mercado</label>
-                            <select name="mercado" id="mercado" class="form-control select2" required>
+                            <select name="mercado" id="mercado" class="form-control" required>
                             <option value="">Seleccionar mercado</option>
                             @foreach($mercados as $mer)
                                 <option value="{{$mer->idmercado}}">{{$mer->nombremercado}}</option>
