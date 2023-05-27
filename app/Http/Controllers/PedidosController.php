@@ -142,7 +142,7 @@ class PedidosController extends Controller
                 $detalle->idpedido=$pedido->idpedido;
                 $detalle->idproducto=$idproducto[$cont];
                 $detalle->cantidad=$cantidad[$cont];
-                $detalle->descripcion=$descripcion[$cont];
+                $detalle->descripcion=$descripcion[$cont] ?:'';
                 $detalle->save();
                 $cont=$cont+1;
             }

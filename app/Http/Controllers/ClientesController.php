@@ -115,7 +115,13 @@ class ClientesController extends Controller
 
     public function todosLosClientes()
     {
-        $clientes = Cliente::orderBy('estado','desc')->orderBy('idcliente', 'asc')->get();
+        //$clientes = Cliente::orderBy('estado','desc')->orderBy('idcliente', 'asc')->get();
+        $clientes = DB::table('clientes as c')
+            ->join('mercados as m','m.idmercado','=','c.idmercado')
+            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado','c.estado')
+            ->orderBy('c.estado','desc')
+            ->orderBy('c.idcliente','asc')
+            ->get();
         return view('Clientes.clientes', compact('clientes'));
     }
 }
