@@ -21,12 +21,12 @@
             @foreach($productos as $pro)
                 <tr>
                     <td>{{ $pro->producto }}</td>
-                    <td>{{$pro->cant}}</td>
+                    <td>{{ $pro->cant }}</td>
                 </tr>
             @endforeach
                 <tr>
                     <td><b>Total</b></td>
-                    <td><b>{{$total->cant}}</b></td>
+                    <td><b>{{ $total->cant }}</b></td>
                 </tr>
             </tbody>
         </table>

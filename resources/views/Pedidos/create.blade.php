@@ -28,7 +28,7 @@
                 <div class="form-group row">
                     <div class="col-md-6">
                             <label for="cliente">Cliente</label>
-                            <select name="cliente" id="cliente" class="form-control" onchange="cambioOpciones();" required>
+                            <select name="cliente" id="cliente" class="form-control select2" onchange="cambioOpciones();" required>
                             <option value="">Seleccionar Cliente</option>
                             @foreach($clientes as $cliente)
                                 <option value="{{$cliente->idcliente}}">{{$cliente->nombrecliente}}</option>
@@ -47,7 +47,7 @@
                 <div class="form-group row">
                     <div class="form-group col-md-3">
                         <label for="idproducto"> Producto</label>
-                        <select id="idproducto" name="idproducto" class="form-control " data-live-search="true" >
+                        <select id="idproducto" name="idproducto" class="form-control select2" data-live-search="true" >
                             <option value="">Seleccione Producto</option>
                             @foreach($productos as $prod)
                                 <option value="{{$prod->idproducto}}">{{$prod->nombreproducto}}</option>
@@ -111,8 +111,7 @@
 @stop
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         function cambioOpciones() {
             //const combo = document.getElementById('cliente'),
@@ -178,8 +177,8 @@
         }
     </script>
     <script>
-        $("#idproducto").select2();
-        $("#cliente").select2();
+        $("#idproducto");
+        $("#cliente");
     </script>
 @stop
 
