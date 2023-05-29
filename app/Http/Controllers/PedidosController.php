@@ -39,6 +39,10 @@ class PedidosController extends Controller
     public function index()
     {
         $promotor = Auth::user()->id;
+        $fechaActual = Carbon::now()->format('Y-m-d');
+
+        // Obtener los pedidos del mismo día
+        $fechaPedidos = Pedido::whereDate('created_at', $fechaActual)->get();
         
         if(Auth::user()->rol == 'promotor'){
         $pedidos = DB::table('pedidos as p')
@@ -46,6 +50,7 @@ class PedidosController extends Controller
             ->join('mercados as m','m.idmercado','=','c.idmercado')
             ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
             ->where('p.iduser','=',$promotor)
+            ->whereDate('p.created_at', $fechaActual)
             ->orderBy('p.idpedido','desc')
             ->get();
         $detalles = DB::table('detallepedidos as d')
@@ -59,6 +64,7 @@ class PedidosController extends Controller
             ->join('clientes as c','p.idcliente','=','c.idcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
             ->join('users as u','u.id','=','p.iduser')
+            ->whereDate('p.created_at', $fechaActual)
             ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion','u.name')
             ->orderBy('p.idpedido','desc')
             ->get();
@@ -239,6 +245,10 @@ class PedidosController extends Controller
     public function ventas()
     {
         $promotor = Auth::user()->id;
+        $fechaActual = Carbon::now()->format('Y-m-d');
+
+        // Obtener los pedidos del mismo día
+        $fechaPedidos = Pedido::whereDate('created_at', $fechaActual)->get();
 
         if(Auth::user()->rol == 'promotor'){
             $productos = DB::table('detallepedidos as d')
@@ -246,13 +256,14 @@ class PedidosController extends Controller
                 ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                 ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
                 ->where('pe.iduser','=',$promotor)
+                ->whereDate('pe.created_at', $fechaActual)
                 ->groupBy('pr.nombreproducto')
                 ->orderBy('pr.nombreproducto')
                 ->get();
 
             $data = [
-                'pedidosDia' => $pedidosDia = Pedido::where('iduser','=',$promotor)->count(),
-                
+                'pedidosDia' => $pedidosDia = Pedido::where('iduser','=',$promotor)
+                    ->whereDate('created_at', $fechaActual)->count(),
                 'clientesActivos' =>$clientesActivos = Cliente::where('estado', 'a')
                     ->where('iduser','=',$promotor)->count(),
                 'clientesBloqueados' => $clientesBloqueados = Cliente::where('estado', 'i')
@@ -262,6 +273,7 @@ class PedidosController extends Controller
                     ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                     ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
                     ->where('pe.iduser','=',$promotor)
+                    ->whereDate('pe.created_at', $fechaActual)
                     ->groupBy('pr.nombreproducto')
                     ->orderByDesc('cant')
                     ->first()
@@ -273,19 +285,20 @@ class PedidosController extends Controller
                 ->join('productos as pr','pr.idproducto','=','d.idproducto')
                 ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                 ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                ->whereDate('pe.created_at', $fechaActual)
                 ->groupBy('pr.nombreproducto')
                 ->orderBy('pr.nombreproducto')
                 ->get();
         
             $data = [
-                'pedidosDia' => $pedidosDia = Pedido::count(),
+                'pedidosDia' => $pedidosDia = Pedido::whereDate('created_at', $fechaActual)->count(),
                 'clientesActivos' =>$clientesActivos = Cliente::where('estado', 'a')->count(),
                 'clientesBloqueados' => $clientesBloqueados = Cliente::where('estado', 'i')->count(),
                 'productoTop' => $productoTop = DB::table('detallepedidos as d')
                     ->join('productos as pr','pr.idproducto','=','d.idproducto')
                     ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                     ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
-                    ->groupBy('pr.nombreproducto')
+                    ->whereDate('pe.created_at', $fechaActual)
                     ->orderByDesc('cant')
                     ->first()
             ];
