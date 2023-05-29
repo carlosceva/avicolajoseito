@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 
 class PedidosController extends Controller
 {
@@ -57,7 +58,8 @@ class PedidosController extends Controller
             $pedidos = DB::table('pedidos as p')
             ->join('clientes as c','p.idcliente','=','c.idcliente')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
+            ->join('users as u','u.id','=','p.iduser')
+            ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion','u.name')
             ->orderBy('p.idpedido','desc')
             ->get();
         $detalles = DB::table('detallepedidos as d')
@@ -124,7 +126,7 @@ class PedidosController extends Controller
         try {
             DB::beginTransaction();
             $promotor = Auth::user()->id;
-
+           
             $pedido = New Pedido();
             $pedido->idcliente=(int)$request->input('cliente');
             $pedido->iduser=$promotor;
@@ -238,14 +240,64 @@ class PedidosController extends Controller
     {
         $promotor = Auth::user()->id;
 
-        $productos = DB::table('detallepedidos as d')
-            ->join('productos as pr','pr.idproducto','=','d.idproducto')
-            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
-            ->where('pe.iduser','=',$promotor)
-            ->groupBy('pr.nombreproducto')
-            ->orderBy('pr.nombreproducto')
-            ->get();
+        if(Auth::user()->rol == 'promotor'){
+            $productos = DB::table('detallepedidos as d')
+                ->join('productos as pr','pr.idproducto','=','d.idproducto')
+                ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+                ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                ->where('pe.iduser','=',$promotor)
+                ->groupBy('pr.nombreproducto')
+                ->orderBy('pr.nombreproducto')
+                ->get();
+
+            $data = [
+                'pedidosDia' => $pedidosDia = Pedido::where('iduser','=',$promotor)->count(),
+                
+                'clientesActivos' =>$clientesActivos = Cliente::where('estado', 'a')
+                    ->where('iduser','=',$promotor)->count(),
+                'clientesBloqueados' => $clientesBloqueados = Cliente::where('estado', 'i')
+                ->where('iduser','=',$promotor)->count(),
+                'productoTop' => $productoTop = DB::table('detallepedidos as d')
+                    ->join('productos as pr','pr.idproducto','=','d.idproducto')
+                    ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+                    ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                    ->where('pe.iduser','=',$promotor)
+                    ->groupBy('pr.nombreproducto')
+                    ->orderByDesc('cant')
+                    ->first()
+            ];
+
+        }
+        if(Auth::user()->rol == 'auxiliar' || Auth::user()->rol == 'administrador'){
+            $productos = DB::table('detallepedidos as d')
+                ->join('productos as pr','pr.idproducto','=','d.idproducto')
+                ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+                ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                ->groupBy('pr.nombreproducto')
+                ->orderBy('pr.nombreproducto')
+                ->get();
+        
+            $data = [
+                'pedidosDia' => $pedidosDia = Pedido::count(),
+                'clientesActivos' =>$clientesActivos = Cliente::where('estado', 'a')->count(),
+                'clientesBloqueados' => $clientesBloqueados = Cliente::where('estado', 'i')->count(),
+                'productoTop' => $productoTop = DB::table('detallepedidos as d')
+                    ->join('productos as pr','pr.idproducto','=','d.idproducto')
+                    ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
+                    ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                    ->groupBy('pr.nombreproducto')
+                    ->orderByDesc('cant')
+                    ->first()
+            ];
+        }
+
+        if ($data['productoTop'] !== null) {
+            $array = json_decode(json_encode($data), true);
+            $product = $array['productoTop']['producto'];
+        }else{
+            $product = 'Ninguno';
+        }
+               
 
         $total = DB::table('detallepedidos as d')
             ->join('productos as pr','pr.idproducto','=','d.idproducto')
@@ -257,6 +309,6 @@ class PedidosController extends Controller
         $producto = $productos->pluck('producto');
         $cantidad = $productos->pluck('cant');
 
-        return view('Pedidos.ventas',['productos'=>$productos,'total'=>$total,'producto'=>$producto,'cantidad'=>$cantidad]);
+        return view('Pedidos.ventas',['productos'=>$productos,'total'=>$total,'producto'=>$producto,'cantidad'=>$cantidad,'data'=>$data,'top'=>$product]);
     }
 }

@@ -30,7 +30,12 @@
                             </div>
                             <label class="card-text">{{$pe->nombrecliente}}</label>
                             <p class="card-text">{{$pe->nombremercado}}</p>
-                            <p class="card-text">Obs.: {{$pe->observacion}}</p>
+                            @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+                                <label>{{$pe->name}}</label>
+                            @endif
+                            @if (!empty($observacion))
+                                <p class="card-text">Obs.: {{$pe->observacion}}</p>
+                            @endif
                             <div class="d-flex justify-content-between">
                                 <p class="card-text"><small class="text-body-secondary col-4">{{ date('d/m/Y',strtotime($pe->hora)) }}</small></p>
                             </div>
