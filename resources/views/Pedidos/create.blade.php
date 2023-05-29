@@ -31,7 +31,7 @@
                             <select name="cliente" id="cliente" class="form-control select2" onchange="cambioOpciones();" required>
                             <option value="">Seleccionar Cliente</option>
                             @foreach($clientes as $cliente)
-                                <option value="{{$cliente->idcliente}}">{{$cliente->nombrecliente}}</option>
+                                <option value="{{$cliente->idcliente}}">{{$cliente->codcliente}} - {{$cliente->nombrecliente}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -115,8 +115,15 @@
     <script>
         function cambioOpciones() {
             //const combo = document.getElementById('cliente'),
-                [id] = document.getElementById('cliente').value.split('_');
-            document.getElementById('showId').value = id;
+            [id] = document.getElementById('cliente').value.split('_');
+            var codclientes = {!! json_encode($clientes) !!};
+            for (var i = 0; i < codclientes.length; i++) {
+                if ( codclientes[i].idcliente === parseInt(id) ) {
+                    var codigo = codclientes[i].codcliente;
+                    break; // Se encontró el cliente, salir del bucle
+                }
+            }
+            document.getElementById('showId').value = codigo;
         }
     </script>
     <script>

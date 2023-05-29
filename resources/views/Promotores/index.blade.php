@@ -16,7 +16,8 @@
 
 @section('content')
     <div class="card table-responsive">
-        <table class="table table-hover">
+        <div class="card-body">
+        <table class="table table-hover" id="promotores">
             <thead class="table-light">
             <tr>
                 <th class="d-none d-md-table-cell">Id</th>
@@ -40,16 +41,21 @@
             @endforeach
             </tbody>
         </table>
-
+        </div>
     </div>
 @stop
 
 @section('css')
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $('#promotores').DataTable();
+    </script>
 @stop
 
 @section('footer')

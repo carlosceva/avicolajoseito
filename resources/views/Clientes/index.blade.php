@@ -8,12 +8,9 @@
 @stop
 
 @section('content')
-    <form action="{{ route('client.all') }}" method="GET">
-        <input type="text" name="search" placeholder="Buscar por nombre">
-        <button type="submit">Buscar</button>
-    </form>
     <div class="row card table-responsive">
-        <table class="table table-hover">
+        <div class="card-body">
+        <table class="table table-hover" id="clientes">
             <thead class="table-light">
             <tr>
                 <th>Id</th>
@@ -54,16 +51,21 @@
             @endforeach
             </tbody>
         </table>
-
+        </div>
     </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 @stop
 
 @section('js')
-
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $('#clientes').DataTable();
+    </script>
 @stop
 
 @section('footer')

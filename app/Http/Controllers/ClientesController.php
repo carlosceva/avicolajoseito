@@ -113,15 +113,30 @@ class ClientesController extends Controller
         //
     }
 
-    public function todosLosClientes()
+    public function todosLosClientes(Request $request)
     {
         //$clientes = Cliente::orderBy('estado','desc')->orderBy('idcliente', 'asc')->get();
+
+        $searchTerm = $request->input('search'); // Obtén el término de búsqueda del request
+        //$usuarios = Cliente::where('nombrecliente', 'LIKE', "%$searchTerm%")->get(); // Filtra los usuarios por el término de búsqueda
+        $usuarios = DB::table('clientes as c')
+            ->join('mercados as m','m.idmercado','=','c.idmercado')
+            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado','c.estado')
+            ->where('c.nombrecliente', 'LIKE', "%$searchTerm%")
+            ->orWhere('c.codcliente', 'LIKE', "%$searchTerm%")
+            ->orderBy('c.estado','desc')
+            ->orderBy('c.idcliente','asc')
+            ->get();
+
         $clientes = DB::table('clientes as c')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
             ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado','c.estado')
             ->orderBy('c.estado','desc')
             ->orderBy('c.idcliente','asc')
-            ->get();
-        return view('Clientes.clientes', compact('clientes'));
+            ->simplePaginate(50);
+            //->get();
+        return view('Clientes.clientes', compact('clientes','usuarios'));
     }
+
+    
 }
