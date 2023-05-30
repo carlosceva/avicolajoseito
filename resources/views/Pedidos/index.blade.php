@@ -48,11 +48,11 @@
                                         <li class="list-group-item bg-gray-light small">{{$det->nombreproducto}} &nbsp; 
                                         <b> {{$det->cantidad}} </b>
                                         &nbsp;
-                                        @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+                                        
                                             <a href="{{ route('pedidos.detalle',$det->iddetalle)}}">
                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                             </a>
-                                        @endif
+                                        
                                         </li>
                                     @endif
                                 @endforeach

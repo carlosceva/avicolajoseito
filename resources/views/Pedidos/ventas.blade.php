@@ -57,7 +57,11 @@
 
             <div class="small-box bg-danger">
                 <div class="inner">
+                @if(isset($top))
                     <h3>{{$top}}</h3>
+                @else
+                    <h3>Ninguno</h3>
+                @endif
                     <p>Producto TOP</p>
                 </div>
                 <div class="icon">

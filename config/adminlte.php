@@ -312,27 +312,35 @@ return [
             'can'  => 'administrador',
         ],
         [
-            'text'    => 'PEDIDOS',
-            'icon' => 'fas fa-fw fa-copy',
-            'submenu' => [
-                [
+            'header'   => 'PEDIDOS',
+            'classes'  => 'text-yellow text-bold text-center',
+        ],
+        [
+            // 'text'    => 'PEDIDOS',
+            // 'icon' => 'fas fa-fw fa-copy',
+            // 'submenu' => [
+                //[
                     'text' => 'Mis pedidos',
                     'url'  => '/mispedidos',
                     'icon' => 'fas fa-fw fa-list',
                     'shift' => 'ml-4',
-                ],
+                //],
                 /*[
                     'text' => 'Gestionar Pedidos',
                     'url'  => '/pedidos',
                     'icon' => 'fas fa-fw fa-list',
                     'shift' => 'ml-4',
                 ],*/
-            ],
+            //],
         ],
         [
-            'text'    => 'CLIENTES',
-            'icon' => 'fa fa-address-book',
-            'submenu' => [
+            'header'   => 'CLIENTES',
+            'classes'  => 'text-yellow text-bold text-center',
+        ],
+        // [
+        //     'text'    => 'CLIENTES',
+        //     'icon' => 'fa fa-address-book',
+        //     'submenu' => [
         /*[
             'text' => 'Registrar ubicación',
             'url'  => '/ubicacion',
@@ -358,8 +366,8 @@ return [
                     'shift' => 'ml-4',
                     'can' => 'BloquearMasivo'
                 ],
-            ],
-        ],
+        //     ],
+        // ],
         
         [
             'text'    => 'REGISTRO DE USUARIOS',

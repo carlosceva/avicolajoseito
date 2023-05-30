@@ -18,7 +18,7 @@ Use App\Http\Controllers\ClientesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('principal');
 });
 
 Route::get('/dashboard',[PedidosController::class,'ventas'])->middleware(['auth', 'verified'])->name('dashboard');
