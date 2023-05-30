@@ -166,9 +166,10 @@
         }
 
         function limpiar(){
-            $('#idproducto').val("");
-            $('#cantidad').val("");
-            $('#descripcion').val("");
+            $('#idproducto').val('').trigger('change');
+            $('#cantidad').val('');
+            $('#descripcion').val('');
+            $('#idproducto').focus();
         }
 
         function evaluar(){

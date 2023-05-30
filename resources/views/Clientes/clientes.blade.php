@@ -28,7 +28,7 @@
             </tr>
             </thead>
             <tbody class="table-group-divider">
-            @if ($usuarios->isEmpty())
+            
                 @foreach($clientes as $b)
                 <tr <?php if ($b->estado ==="i") { echo 'style="background-color: red; color:white;"'; } ?>>
                     <td>{{ $b->idcliente }}</td>
@@ -54,36 +54,9 @@
                     </td>
                     @endif
                 </tr>
-            @endforeach
-            @else
-                @foreach ($usuarios as $usuario)
-                    <tr>
-                    <td>{{ $usuario->idcliente }}</td>
-                        <td>{{ $usuario->codcliente }}</td>
-                        <td>{{ $usuario->nombrecliente }}</td>
-                        <td>{{ $usuario->nombremercado }}</td>
-                        <td>
-                            @if($usuario->estado =="a")
-                                activo
-                            @else
-                                inactivo
-                            @endif
-                        </td>
-                        @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                        <td class="text-center">
-                            <div class="form-check form-switch">
-                                <form method="POST" action="{{ route('bloquear.update', $usuario->idcliente) }}">
-                                    @method('PATCH')
-                                    @csrf
-                                    <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($usuario->estado == 'i') ? '' : 'checked' }}>
-                                </form>
-                            </div>
-                        </td>
-                        @endif
-                        <!-- Otros datos de columna -->
-                    </tr>
                 @endforeach
-            @endif
+           
+            
             </tbody>
         </table>
         </div>

@@ -32,12 +32,7 @@
                 {{ $slot }}
             </main>
         </div>
-        <script src="{{ mix('js/app.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('.select2').select2();
-    });
-</script>
+
 
     </body>
 </html>

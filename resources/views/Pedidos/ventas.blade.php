@@ -19,9 +19,9 @@
                     <p>Pedidos del día</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="fa fa-list"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/mispedidos" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -33,9 +33,9 @@
                     <p>Clientes</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="fa fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/misclientes" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -47,9 +47,9 @@
                     <p>Bloqueados</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="fa fa-user-times"></i>
                 </div>
-                <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/bloqueados" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -61,7 +61,7 @@
                     <p>Producto TOP</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-pie-graph"></i>
+                    <i class="fa fa-shopping-cart"></i>
                 </div>
                 <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>

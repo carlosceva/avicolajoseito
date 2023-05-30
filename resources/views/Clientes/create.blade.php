@@ -44,7 +44,7 @@
                 <div class="form-group row">
                     <div class="col-md-4">
                         <label for="puesto" class="form-label">Nro puesto</label>
-                        <input type="text" name="puesto" id="puesto" class="form-control" placeholder="Ingresar Nro Puesto" value="{{old('puesto')}}" required>
+                        <input type="text" name="puesto" id="puesto" class="form-control" placeholder="Ingresar Nro Puesto" value="{{old('puesto')}}">
                     </div>
                     <div class="col-md-4">
                             <label for="promotor">Promotor</label>
