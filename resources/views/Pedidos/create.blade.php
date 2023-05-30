@@ -67,7 +67,7 @@
 
                     <div class="form-group col-md-3">
                         <label for="">&nbsp;</label>
-                        <button type="button" id="agregar" class="btn btn-primary col-md-12"> <i class="fa fa-plus"></i>&nbsp; Agregar</button>
+                        <button type="button" id="agregar" class="btn btn-primary col-md-12"> <i class="fa fa-plus"></i>&nbsp; Agregar detalle</button>
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
 
                 <!-- Fila Botones Guardar y cancelar -->
                 <div class="w3-row text-center" id="guardar">
-                        <button type="submit" id="register" class="btn btn-success col-md-3">Guardar</button>
+                        <button type="submit" id="register" class="btn btn-success col-md-3">Guardar Pedido</button>
                         <label class="col-md-1">&nbsp;</label>
                         <a href="{{url('mispedidos')}}" class="btn btn-danger col-md-3">Cancelar</a>
                 </div>

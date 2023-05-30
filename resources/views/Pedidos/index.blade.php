@@ -33,7 +33,7 @@
                             @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
                                 <label>{{$pe->name}}</label>
                             @endif
-                            @if (!empty($observacion))
+                            @if (!empty($pe->observacion))
                                 <p class="card-text">Obs.: {{$pe->observacion}}</p>
                             @endif
                             <div class="d-flex justify-content-between">
