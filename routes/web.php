@@ -34,8 +34,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/mispedidos',[PedidosController::class,'index']);
 //Route::get('/pedidos',[PedidosController::class,'index2']);
 Route::get('/mispedidos/create',[PedidosController::class,'create']);
-//Route::get('/pedidos/create',[PedidosController::class,'create2']);
+Route::get('/mispedidos/agregar',[PedidosController::class,'agregar'])->name('pedidos.agregar');
 Route::post('/mispedidos', [PedidosController::class,'store'])->name('pedidos.store');
+Route::post('/mipedido', [PedidosController::class,'guardar'])->name('pedidos.guardar');
 
 Route::resource('/promotores',PromotoresController::class);
 
@@ -54,6 +55,11 @@ Route::post('/clientes/create',[ClientesController::class,'store'])->name('clien
 Route::get('/pedidos/{pedido}/edit',[PedidosController::class,'edit'])->name('pedidos.edit');
 Route::get('/pedidos/{detalle}/detalle',[PedidosController::class,'detalle'])->name('pedidos.detalle');
 Route::put('/pedidos/{detalle}',[PedidosController::class,'update'])->name('pedidos.update');
+Route::delete('/pedidos/detalle/{id}', [PedidosController::class,'eliminarDetalle'])->name('pedidos.eliminarDetalle');
+Route::put('/pedidos/{detalle}',[PedidosController::class,'update'])->name('pedidos.update');
+Route::post('/pedido/{detalle}',[PedidosController::class,'actualizar'])->name('pedidos.actualizar');
+Route::get('/pedidos/{id}/eliminar', [PedidosController::class,'eliminar'])->name('pedidos.eliminar');
+
 });
 
 require __DIR__.'/auth.php';

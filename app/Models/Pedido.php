@@ -14,7 +14,8 @@ class Pedido extends Model
 
     protected $fillable = [
         'idcliente',
-        'idpromotor',
+        'iduser',
+        'estado',
         'observacion',
     ];
 }

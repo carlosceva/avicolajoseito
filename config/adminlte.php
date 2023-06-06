@@ -313,7 +313,7 @@ return [
         ],
         [
             'header'   => 'PEDIDOS',
-            'classes'  => 'text-yellow text-bold text-center',
+            'classes'  => 'text-yellow text-bold',
         ],
         [
             // 'text'    => 'PEDIDOS',
@@ -335,7 +335,7 @@ return [
         ],
         [
             'header'   => 'CLIENTES',
-            'classes'  => 'text-yellow text-bold text-center',
+            'classes'  => 'text-yellow text-bold',
         ],
         // [
         //     'text'    => 'CLIENTES',
@@ -368,12 +368,15 @@ return [
                 ],
         //     ],
         // ],
-        
         [
-            'text'    => 'REGISTRO DE USUARIOS',
-            'icon' => 'fa fa-address-card',
-            'can' => 'Clientes',
-            'submenu' => [
+            'header'   => 'REGISTRO DE USUARIOS',
+            'classes'  => 'text-yellow text-bold',
+        ],
+        //[
+            // 'text'    => 'REGISTRO DE USUARIOS',
+            // 'icon' => 'fa fa-address-card',
+            // 'can' => 'Clientes',
+            // 'submenu' => [
                 [
                     'text' => 'Gestionar promotores',
                     'url'  => '/promotores',
@@ -388,8 +391,8 @@ return [
                     'shift' => 'ml-4',
                     'can' => 'Clientes',
                 ],    
-            ],
-        ],
+            //],
+        //],
         
     ],
 

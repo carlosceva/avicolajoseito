@@ -16,6 +16,7 @@ class Detalle extends Model
         'cantidad',
         'idproducto',
         'idpedido',
-        'descripcion'
+        'descripcion',
+        'estado'
     ];
 }

@@ -24,30 +24,30 @@
             <form action="{{route('pedidos.store')}}" method="post">
                 @csrf
 
-                <!-- Fila Cliente y codigo cliente -->
+                <!-- Fila Cliente y codigo cliente                                   onchange="cambioOpciones();" --> 
                 <div class="form-group row">
                     <div class="col-md-6">
-                            <label for="cliente">Cliente</label>
-                            <select name="cliente" id="cliente" class="form-control select2" onchange="cambioOpciones();" required>
+                           <!-- <label for="cliente">Cliente</label> -->
+                            <select name="cliente" id="cliente" class="form-control select2"   required>
                             <option value="">Seleccionar Cliente</option>
                             @foreach($clientes as $cliente)
                                 <option value="{{$cliente->idcliente}}">{{$cliente->codcliente}} - {{$cliente->nombrecliente}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <fieldset disabled>
                             <label for="showId" class="form-label">Código Cliente</label>
                             <input id="showId" type="text" class="form-control">
                         </fieldset>
-                    </div>
+                    </div>-->
                 </div>
 
                 <!-- Fila producto, cantidad y boton agregar -->
                 <div class="form-group row">
                     <div class="form-group col-md-3">
-                        <label for="idproducto"> Producto</label>
-                        <select id="idproducto" name="idproducto" class="form-control select2" data-live-search="true" >
+                        <!-- <label for="idproducto"> Producto</label> -->
+                        <select id="idproducto" name="idproducto" class="form-control" data-live-search="true" >
                             <option value="">Seleccione Producto</option>
                             @foreach($productos as $prod)
                                 <option value="{{$prod->idproducto}}">{{$prod->nombreproducto}}</option>
@@ -56,18 +56,18 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="cantidad"> Cantidad</label>
-                        <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="Cantidad" value="{{old('cantidad')}}" >
+                       <!-- <label for="cantidad"> Cantidad</label> -->
+                        <input type="number" name="cantidad" id="cantidad" min="0" class="form-control" placeholder="Cantidad" value="{{old('cantidad')}}" >
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="descripcion"> Descripcion</label>
-                        <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="descripcion" value="{{old('cantidad')}}" >
+                        <!--  <label for="descripcion"> Descripcion</label> -->
+                        <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción" value="{{old('cantidad')}}" >
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="">&nbsp;</label>
-                        <button type="button" id="agregar" class="btn btn-primary col-md-12"> <i class="fa fa-plus"></i>&nbsp; Agregar detalle</button>
+                        <!-- <label for="">&nbsp;</label> -->
+                        <button type="button" id="agregar" class="btn btn-primary col-md-12"> <i class="fa fa-shopping-cart"></i>&nbsp; Agregar detalle</button>
                     </div>
                 </div>
 
@@ -78,8 +78,8 @@
                             <thead>
                             <tr>
                                 <th scope="col">Producto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">descripcion</th>
+                                <th scope="col">Cant.</th>
+                                <th scope="col">Descripción</th>
                                 <th scope="col">Opciones</th>
                             </tr>
                             </thead>
@@ -89,10 +89,11 @@
                         </table>
                     </div>
                 </div>
+                &nbsp;
                 <!-- Fila observacion -->
                 <div class="form-group">
-                    <label for="observacion"> Observación</label>
-                    <input type="text"  name="observacion" id="observacion" class="form-control" placeholder="Observacón" value="" >
+                    <!-- <label for="observacion"> Observación</label> -->
+                    <input type="text"  name="observacion" id="observacion" class="form-control" placeholder="Observación" value="" >
                 </div>
 
                 <!-- Fila Botones Guardar y cancelar -->

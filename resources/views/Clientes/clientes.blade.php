@@ -21,6 +21,7 @@
                 <th>Codigo</th>
                 <th>Nombre</th>
                 <th class="d-none d-md-table-cell">Mercado</th>
+                <th>Promotor</th>
                 <th>Estado</th>
                 @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
                     <th>Accion</th>
@@ -35,6 +36,7 @@
                     <td>{{$b->codcliente}}</td>
                     <td>{{$b->nombrecliente}}</td>
                     <td>{{$b->nombremercado}}</td>
+                    <td>{{$b->name}}</td>
                     <td>
                         @if($b->estado =="a")
                             activo

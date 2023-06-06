@@ -55,5 +55,7 @@ class MercadosSeeder extends Seeder
         Mercado::create(['nombremercado'=>'Est Argentina','dirmercado'=>'']);
         Mercado::create(['nombremercado'=>'San Juan','dirmercado'=>'']);
         Mercado::create(['nombremercado'=>'Sin mercado','dirmercado'=>'']);
+        Mercado::create(['nombremercado'=>'DIST. NORTE','dirmercado'=>'']);
+        Mercado::create(['nombremercado'=>'EL TORNO','dirmercado'=>'']);
     }
 }

@@ -122,7 +122,8 @@ class ClientesController extends Controller
 
         $clientes = DB::table('clientes as c')
             ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado','c.estado')
+            ->join('users as u','c.iduser','=','u.id')
+            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado','c.estado','u.name')
             ->orderBy('c.estado','desc')
             ->orderBy('c.idcliente','asc')
             ->get();
