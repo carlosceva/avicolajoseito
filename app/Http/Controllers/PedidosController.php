@@ -276,6 +276,15 @@ class PedidosController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function quitarDetalle($id)
+    {
+        $detalle = Detalle::findOrFail($id);
+        $detalle->estado = 'i'; // Cambiar el estado a "i" (inactivo) u otro valor que represente la eliminación lógica
+        $detalle->save();
+
+        return redirect()->back()->with('success', 'Pedido eliminado correctamente');
+    }
     /**
      * Update the specified resource in storage.
      */

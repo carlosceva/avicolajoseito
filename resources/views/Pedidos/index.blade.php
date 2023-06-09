@@ -39,12 +39,13 @@
                     <div class="col-md-7">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">#{{ $pe->idpedido }} &nbsp; 
+                                <h5 class="card-title">#{{ $pe->idpedido }} &nbsp; 
                                     @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
                                     <a href="{{ route('pedidos.edit',$pe->idpedido)}}"> <i class="fa fa-edit" aria-hidden="true"></i></a>
-                                    <a href="#" data-toggle="modal" data-target="#confirmarEliminar{{ $pe->idpedido }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a></h5> 
-                                    <p class="card-text"><small class="text-body-secondary col-4">{{ date('H:i',strtotime($pe->hora)) }}</small></p>
-                                @endif
+                                    <a href="#" data-toggle="modal" data-target="#confirmarEliminar{{ $pe->idpedido }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
+                                    @endif
+                                </h5> 
+                                <p class="card-text"><small class="text-body-secondary col-4">{{ date('H:i',strtotime($pe->hora)) }}</small></p>
                             </div>
                             <label class="card-text">{{$pe->nombrecliente}}</label>
                             <p class="card-text">{{$pe->nombremercado}}</p>
@@ -67,9 +68,8 @@
                                         <b> {{$det->cantidad}} </b>
                                         &nbsp;
                                         @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                                            <a href="{{ route('pedidos.detalle',$det->iddetalle)}}">
-                                                <i class="fa fa-edit" aria-hidden="true"></i>
-                                            </a>
+                                            <a href="{{ route('pedidos.detalle',$det->iddetalle)}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#EliminarDetalle{{ $det->iddetalle }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
                                         @endif
                                         @if (auth()->user()->rol == 'promotor' && $puedeAgregarPedido)
                                             <a href="{{ route('pedidos.detalle',$det->iddetalle)}}">
@@ -78,13 +78,35 @@
                                         @endif
                                         </li>
                                     @endif
+                                    <!-- Modal de confirmación de eliminación de detalle  -->
+                                    <div class="modal fade" id="EliminarDetalle{{ $det->iddetalle }}" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarLabel{{ $det->iddetalle }}">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmarEliminarLabel{{ $det->iddetalle }}">Confirmar eliminación</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>¿Estás seguro de que deseas eliminar el producto?</p>
+                                                    <p>{{$det->nombreproducto}}, cantidad: {{$det->cantidad}}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <a href="{{ route('pedidos.quitarDetalle', $det->iddetalle) }}" class="btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal de confirmación de eliminación -->
+        
+        <!-- Modal de confirmación de eliminación-->
         <div class="modal fade" id="confirmarEliminar{{ $pe->idpedido }}" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarLabel{{ $pe->idpedido }}">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -95,7 +117,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>¿Estás seguro de que deseas eliminar este pedido?</p>
+                        <p>¿Estás seguro de que deseas eliminar el pedido #{{ $pe->idpedido }}?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

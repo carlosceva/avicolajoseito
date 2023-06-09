@@ -56,6 +56,7 @@ Route::get('/pedidos/{pedido}/edit',[PedidosController::class,'edit'])->name('pe
 Route::get('/pedidos/{detalle}/detalle',[PedidosController::class,'detalle'])->name('pedidos.detalle');
 Route::put('/pedidos/{detalle}',[PedidosController::class,'update'])->name('pedidos.update');
 Route::delete('/pedidos/detalle/{id}', [PedidosController::class,'eliminarDetalle'])->name('pedidos.eliminarDetalle');
+Route::get('/pedidos/detalle/{id}', [PedidosController::class,'quitarDetalle'])->name('pedidos.quitarDetalle');
 Route::put('/pedidos/{detalle}',[PedidosController::class,'update'])->name('pedidos.update');
 Route::post('/pedido/{detalle}',[PedidosController::class,'actualizar'])->name('pedidos.actualizar');
 Route::get('/pedidos/{id}/eliminar', [PedidosController::class,'eliminar'])->name('pedidos.eliminar');
