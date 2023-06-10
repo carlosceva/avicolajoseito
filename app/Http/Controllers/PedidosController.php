@@ -401,6 +401,8 @@ class PedidosController extends Controller
                 ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                 ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
                 ->where('pe.iduser','=',$promotor)
+                ->where('pe.estado','a')
+                ->where('d.estado','a')
                 ->whereDate('pe.created_at', $fechaActual)
                 ->groupBy('pr.nombreproducto')
                 ->orderBy('pr.nombreproducto')
@@ -418,6 +420,8 @@ class PedidosController extends Controller
                     ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                     ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
                     ->where('pe.iduser','=',$promotor)
+                    ->where('pe.estado','a')
+                    ->where('d.estado','a')
                     ->whereDate('pe.created_at', $fechaActual)
                     ->groupBy('pr.nombreproducto')
                     ->orderByDesc('cant')
@@ -430,19 +434,23 @@ class PedidosController extends Controller
                 ->join('productos as pr','pr.idproducto','=','d.idproducto')
                 ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                 ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                ->where('pe.estado','a')
+                ->where('d.estado','a')
                 ->whereDate('pe.created_at', $fechaActual)
                 ->groupBy('pr.nombreproducto')
                 ->orderBy('pr.nombreproducto')
                 ->get();
         
             $data = [
-                'pedidosDia' => $pedidosDia = Pedido::whereDate('created_at', $fechaActual)->count(),
+                'pedidosDia' => $pedidosDia = Pedido::whereDate('created_at', $fechaActual)->where('estado','a')->count(),
                 'clientesActivos' =>$clientesActivos = Cliente::where('estado', 'a')->count(),
                 'clientesBloqueados' => $clientesBloqueados = Cliente::where('estado', 'i')->count(),
                 'productoTop' => $productoTop = DB::table('detallepedidos as d')
                     ->join('productos as pr','pr.idproducto','=','d.idproducto')
                     ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
                     ->select('pr.nombreproducto as producto', DB::raw('sum(d.cantidad) as cant'))
+                    ->where('pe.estado','a')
+                    ->where('d.estado','a')
                     ->whereDate('pe.created_at', $fechaActual)
                     ->orderByDesc('cant')
                     ->first()
