@@ -109,6 +109,7 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <meta name="google" content="notranslate">
 @stop
 
 @section('js')
@@ -192,8 +193,12 @@
         }
     </script>
     <script>
-        $("#idproducto");
-        $("#cliente");
+        $(document).ready(function() {
+            $('form').submit(function() {
+                $('button[type="submit"]').prop('disabled', true);
+            });
+        });
+
     </script>
 @stop
 

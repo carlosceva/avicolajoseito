@@ -46,7 +46,7 @@
                     <div class="carousel-inner">
                         @foreach ($gruposProductos as $index => $grupo)
                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                            <ul class="list-group color-1">
+                            <ul class="list-group color-{{$index}}">
                             @foreach ($grupo as $producto)
                                 <li class="list-group-item">
                                     <div class="row">
@@ -55,10 +55,10 @@
                                         </div>
                                         <div class="col-3">
                                             <input type="hidden" name="idproducto[]" id="" value="{{ $producto->idproducto }}">
-                                            <input type="number" name="cantidad[]" min="0" id="" class="form-control" placeholder="cant." value="">
+                                            <input type="number" name="cantidad[]" min="0" id="" class="form-control" placeholder="Cantidad" value="">
                                         </div>
                                         <div class="col-5">
-                                            <input type="text" name="descripcion[]" id="" class="form-control" placeholder="descripción" value="">
+                                            <input type="text" name="descripcion[]" id="" class="form-control" placeholder="Descripción" value="">
                                         </div>
                                     </div>
                                 </li>
@@ -91,33 +91,40 @@
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-    <!--
+    <meta name="google" content="notranslate">
+    
     <style>
-        ul.list-group.color-1 {
+        ul.list-group.color-0 {
             border: 2px solid #FF6100; /* Establece un borde de 1px sólido con color #ccc */
             border-radius: 5px; /* Agrega esquinas redondeadas al borde */
             padding: 0px; /* Espacio interno para separar los elementos */
         }
 
-        ul.list-group.color-2 {
+        ul.list-group.color-1 {
             border: 2px solid #FFF300; /* Establece un borde de 1px sólido con color #ccc */
             border-radius: 5px; /* Agrega esquinas redondeadas al borde */
             padding: 0px; /* Espacio interno para separar los elementos */
         }
 
-        ul.list-group.color-3 {
+        ul.list-group.color-2 {
             border: 2px solid #8FEB4C; /* Establece un borde de 1px sólido con color #ccc */
             border-radius: 5px; /* Agrega esquinas redondeadas al borde */
             padding: 0px; /* Espacio interno para separar los elementos */
         }
 
-        ul.list-group.color-4 {
+        ul.list-group.color-3 {
             border: 2px solid #00B2FF; /* Establece un borde de 1px sólido con color #ccc */
             border-radius: 5px; /* Agrega esquinas redondeadas al borde */
             padding: 0px; /* Espacio interno para separar los elementos */
         }
+
+        ul.list-group.color-4 {
+            border: 2px solid #F44DFF; /* Establece un borde de 1px sólido con color #ccc */
+            border-radius: 5px; /* Agrega esquinas redondeadas al borde */
+            padding: 0px; /* Espacio interno para separar los elementos */
+        }
     </style>
-    -->
+
 @stop
 
 @section('js')
@@ -166,6 +173,14 @@
                 carouselItems[activeIndex - 1].classList.add('active');
             }
         }
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function() {
+                $('button[type="submit"]').prop('disabled', true);
+            });
+        });
 
     </script>
 @stop
