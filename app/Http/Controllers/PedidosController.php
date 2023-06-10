@@ -410,7 +410,7 @@ class PedidosController extends Controller
 
             $data = [
                 'pedidosDia' => $pedidosDia = Pedido::where('iduser','=',$promotor)
-                    ->whereDate('created_at', $fechaActual)->count(),
+                    ->whereDate('created_at', $fechaActual)->where('estado','a')->count(),
                 'clientesActivos' =>$clientesActivos = Cliente::where('estado', 'a')
                     ->where('iduser','=',$promotor)->count(),
                 'clientesBloqueados' => $clientesBloqueados = Cliente::where('estado', 'i')

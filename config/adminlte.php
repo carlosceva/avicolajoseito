@@ -371,6 +371,7 @@ return [
         [
             'header'   => 'REGISTRO DE USUARIOS',
             'classes'  => 'text-yellow text-bold',
+            'can' => 'BloquearMasivo',
         ],
         //[
             // 'text'    => 'REGISTRO DE USUARIOS',
