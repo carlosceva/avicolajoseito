@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Use App\Http\Controllers\PedidosController;
 Use App\Http\Controllers\PromotoresController;
 Use App\Http\Controllers\ClientesController;
+Use App\Http\Controllers\PlanillaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,6 +62,7 @@ Route::put('/pedidos/{detalle}',[PedidosController::class,'update'])->name('pedi
 Route::post('/pedido/{detalle}',[PedidosController::class,'actualizar'])->name('pedidos.actualizar');
 Route::get('/pedidos/{id}/eliminar', [PedidosController::class,'eliminar'])->name('pedidos.eliminar');
 
+Route::resource('/planilla',PlanillaController::class);
 });
 
 require __DIR__.'/auth.php';

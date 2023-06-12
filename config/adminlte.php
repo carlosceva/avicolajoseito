@@ -394,7 +394,23 @@ return [
                 ],    
             //],
         //],
-        
+        [
+            'header'   => 'REPORTES',
+            'classes'  => 'text-yellow text-bold',
+            'can' => 'BloquearMasivo',
+        ],
+        //[
+            // 'text'    => 'REGISTRO DE USUARIOS',
+            // 'icon' => 'fa fa-address-card',
+            // 'can' => 'Clientes',
+            // 'submenu' => [
+                [
+                    'text' => 'Planilla industrial',
+                    'url'  => '/planilla',
+                    'icon' => 'fas fa-fw fa-file',
+                    'shift' => 'ml-4',
+                    'can' => 'BloquearMasivo',
+                ], 
     ],
 
     /*

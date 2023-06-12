@@ -47,7 +47,7 @@ class PedidosController extends Controller
         $detalles = DB::table('detallepedidos as d')
             ->join('productos as pr','pr.idproducto','=','d.idproducto')
             ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad')
+            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad','d.descripcion')
             ->where('d.estado','a')
             ->get();
         }
@@ -64,7 +64,7 @@ class PedidosController extends Controller
         $detalles = DB::table('detallepedidos as d')
             ->join('productos as pr','pr.idproducto','=','d.idproducto')
             ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad')
+            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad','d.descripcion')
             ->where('d.estado','a')
             ->get();
         }

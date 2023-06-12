@@ -68,7 +68,7 @@
                                         <b> {{$det->cantidad}} </b>
                                         &nbsp;
                                         @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                                            <a href="{{ route('pedidos.detalle',$det->iddetalle)}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#EditarDetalle{{ $det->iddetalle }}"> <i class="fa fa-edit" aria-hidden="true"></i></a>
                                             <a href="#" data-toggle="modal" data-target="#EliminarDetalle{{ $det->iddetalle }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
                                         @endif
                                         @if (auth()->user()->rol == 'promotor' && $puedeAgregarPedido)
@@ -95,6 +95,61 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                     <a href="{{ route('pedidos.quitarDetalle', $det->iddetalle) }}" class="btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal de confirmación para editar detalle  -->
+                                    <div class="modal fade" id="EditarDetalle{{ $det->iddetalle }}" tabindex="-1" role="dialog" aria-labelledby="confirmarEditarLabel{{ $det->iddetalle }}">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmarEditarLabel{{ $det->iddetalle }}">Editar detalle</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Modal editar detalle  -->
+                                                    <div class="container">
+                                                        @if($errors->has('cantidad'))
+                                                            <div class="alert alert-danger">{{ $errors->first('cantidad') }}</div>
+                                                        @endif
+                                                            <form action="{{route('pedidos.update',$det->iddetalle)}}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <!-- Fila producto, cantidad y boton agregar -->
+                                                                <div class="form-group row">
+                                                                    
+                                                                    <div class="form-group col-md-4">
+                                                                        <fieldset disabled>
+                                                                            <label for="producto"> Producto</label>
+                                                                            <input id="" type="text" class="form-control" value="{{$det->nombreproducto}}">
+                                                                        </fieldset>
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="cantidad"> Cantidad</label>
+                                                                        <input type="hidden" name="cantidad_actual" value="{{ $det->cantidad }}">
+                                                                        <input type="number" name="cantidad" id="cantidad" class="form-control" value="{{$det->cantidad}}" >
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-4">
+                                                                        <label for="descripcion"> Descripcion</label>
+                                                                        <input type="text" name="descripcion" id="descripcion" class="form-control"  value="{{$det->descripcion}}" >
+                                                                    </div>
+                                                                    
+                                                                </div>
+
+                                                                <!-- Fila Botones Guardar y cancelar -->
+                                                                <div class="w3-row text-center" id="guardar">
+                                                                        <button type="submit" id="register" class="btn btn-success col-md-3">Guardar</button>
+                                                                        <label class="col-md-1">&nbsp;</label>
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    <!-- Modal editar detalle  -->
                                                 </div>
                                             </div>
                                         </div>
