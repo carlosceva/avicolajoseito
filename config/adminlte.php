@@ -411,6 +411,23 @@ return [
                     'shift' => 'ml-4',
                     'can' => 'BloquearMasivo',
                 ], 
+        [
+            'header'   => 'CONFIGURACIÓN',
+            'classes'  => 'text-yellow text-bold',
+            'can' => 'BloquearMasivo',
+        ],
+                //[
+                    // 'text'    => 'REGISTRO DE USUARIOS',
+                    // 'icon' => 'fa fa-address-card',
+                    // 'can' => 'Clientes',
+                    // 'submenu' => [
+                        [
+                            'text' => 'Gestionar hora',
+                            'url'  => '/hora',
+                            'icon' => 'fas fa-fw fa-clock',
+                            'shift' => 'ml-4',
+                            'can' => 'BloquearMasivo',
+                        ],
     ],
 
     /*

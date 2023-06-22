@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -91,5 +92,20 @@ class BloquearController extends Controller
 
     public function indexBloquear(){
         return view('Clientes.bloquear');
+    }
+
+    public function indexHora(){
+        $hora = DB::table('config')->first();
+        return view('Config.hora',['hora'=>$hora]);
+    }
+
+    public function updateHora(Request $request, $id)
+    {
+        $hora = Config::findOrFail(1);
+        $hora->horainicio = $request->input('horainicio');
+        $hora->horafin = $request->input('horafin');
+        $hora->save();
+
+        return redirect()->route('hora.index')->with('success', 'Configuración actualizada correctamente.');
     }
 }

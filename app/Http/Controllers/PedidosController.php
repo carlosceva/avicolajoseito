@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Detalle;
+use App\Models\Config;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\Cliente;
@@ -29,7 +30,14 @@ class PedidosController extends Controller
         $now = Carbon::now();
         $horaInicio = Carbon::createFromTime(8, 00, 0); // Establecer hora de inicio a las 8:00 AM
         $horaFin = Carbon::createFromTime(18, 00, 0); // Establecer hora de fin a las 18:00 PM
-        $puedeAgregarPedido = $now->between($horaInicio, $horaFin);
+
+        $hora = Config::findOrFail(1);
+        $horaI = $hora->horainicio; 
+        $horaF = $hora->horafin;
+
+        //dd($horaI, $horaF);
+
+        $puedeAgregarPedido = $now->between($horaI, $horaF);
 
         // Obtener los pedidos del mismo día
         $fechaPedidos = Pedido::whereDate('created_at', $fechaActual)->get();
@@ -37,7 +45,7 @@ class PedidosController extends Controller
         if(Auth::user()->rol == 'promotor'){
             $pedidos = Pedido::with('detalles.producto','cliente.mercado','user')
                 ->where('estado', 'a')
-                ->where('p.iduser','=',$promotor)
+                ->where('iduser','=',$promotor)
                 ->whereDate('created_at', $fechaActual)
                 ->orderBy('idpedido','desc')
                 ->SimplePaginate(15);

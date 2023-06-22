@@ -63,6 +63,10 @@ Route::post('/pedido/{detalle}',[PedidosController::class,'actualizar'])->name('
 Route::get('/pedidos/{id}/eliminar', [PedidosController::class,'eliminar'])->name('pedidos.eliminar');
 
 Route::resource('/planilla',PlanillaController::class);
+//Route::resource('/hora',[BloquearController::class,'indexHora'])->name('hora.index');
+Route::get('/hora', [BloquearController::class,'indexHora'])->name('hora.index');
+Route::put('/hora/{id}/edit', [BloquearController::class,'updateHora'])->name('hora.update');
+
 });
 
 require __DIR__.'/auth.php';
