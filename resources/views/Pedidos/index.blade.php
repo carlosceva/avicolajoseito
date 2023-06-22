@@ -30,8 +30,8 @@
 @stop
 
 @section('content')
-    <main>
-    <div class="row">
+    
+<div class="row">
         @foreach($pedidos as $pe)
         <div class="col-sm-4">
             <div class="card" >
@@ -45,39 +45,39 @@
                                     <a href="#" data-toggle="modal" data-target="#confirmarEliminar{{ $pe->idpedido }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
                                     @endif
                                 </h5> 
-                                <p class="card-text"><small class="text-body-secondary col-4">{{ date('H:i',strtotime($pe->hora)) }}</small></p>
+                                <p class="card-text"><small class="text-body-secondary col-4">{{ date('H:i',strtotime($pe->created_at)) }}</small></p>
                             </div>
-                            <label class="card-text">{{$pe->nombrecliente}}</label>
-                            <p class="card-text">{{$pe->nombremercado}}</p>
+                            <label class="card-text">{{$pe->cliente->nombrecliente}}</label>
+                            <p class="card-text">{{$pe->cliente->mercado->nombremercado}}</p>
                             @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                                <label>{{$pe->name}}</label>
+                                <label>{{ $pe->user->name }}</label>
                             @endif
                             @if (!empty($pe->observacion))
                                 <p class="card-text">Obs.: {{$pe->observacion}}</p>
                             @endif
                             <div class="d-flex justify-content-between">
-                                <p class="card-text"><small class="text-body-secondary col-4">{{ date('d/m/Y',strtotime($pe->hora)) }}</small></p>
+                                <p class="card-text"><small class="text-body-secondary col-4">{{ date('d/m/Y',strtotime($pe->created_at)) }}</small></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5 border">
                         <ul class="list-group list-group-flush">
-                                @foreach($detalles as $det)
-                                    @if($det->idpedido == $pe->idpedido)
-                                        <li class="list-group-item bg-gray-light small">{{$det->nombreproducto}} &nbsp; 
-                                        <b> {{$det->cantidad}} </b>
-                                        &nbsp;
-                                        @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                                        <a href="#" data-toggle="modal" data-target="#EditarDetalle{{ $det->iddetalle }}"> <i class="fa fa-edit" aria-hidden="true"></i></a>
-                                            <a href="#" data-toggle="modal" data-target="#EliminarDetalle{{ $det->iddetalle }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
-                                        @endif
-                                        @if (auth()->user()->rol == 'promotor' && $puedeAgregarPedido)
-                                            <a href="{{ route('pedidos.detalle',$det->iddetalle)}}">
-                                                <i class="fa fa-edit" aria-hidden="true"></i>
-                                            </a>
+                                @foreach($pe->detalles as $det)
+                                        @if($det->estado == 'a')
+                                            <li class="list-group-item bg-gray-light small">{{$det->producto->nombreproducto}} &nbsp; 
+                                            <b> {{$det->cantidad}} </b>
+                                            &nbsp;
+                                            @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+                                            <a href="#" data-toggle="modal" data-target="#EditarDetalle{{ $det->iddetalle }}"> <i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                <a href="#" data-toggle="modal" data-target="#EliminarDetalle{{ $det->iddetalle }}"> <i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a>
+                                            @endif
+                                            @if (auth()->user()->rol == 'promotor' && $puedeAgregarPedido)
+                                                <a href="{{ route('pedidos.detalle',$det->iddetalle)}}">
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                </a>
+                                            @endif
                                         @endif
                                         </li>
-                                    @endif
                                     <!-- Modal de confirmación de eliminación de detalle  -->
                                     <div class="modal fade" id="EliminarDetalle{{ $det->iddetalle }}" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarLabel{{ $det->iddetalle }}">
                                         <div class="modal-dialog" role="document">
@@ -90,7 +90,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>¿Estás seguro de que deseas eliminar el producto?</p>
-                                                    <p>{{$det->nombreproducto}}, cantidad: {{$det->cantidad}}</p>
+                                                    <p>{{$det->producto->nombreproducto}}, cantidad: {{$det->cantidad}}</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -124,7 +124,7 @@
                                                                     <div class="form-group col-md-4">
                                                                         <fieldset disabled>
                                                                             <label for="producto"> Producto</label>
-                                                                            <input id="" type="text" class="form-control" value="{{$det->nombreproducto}}">
+                                                                            <input id="" type="text" class="form-control" value="{{$det->producto->nombreproducto}}">
                                                                         </fieldset>
                                                                     </div>
 
@@ -160,7 +160,6 @@
                 </div>
             </div>
         </div>
-        
         <!-- Modal de confirmación de eliminación-->
         <div class="modal fade" id="confirmarEliminar{{ $pe->idpedido }}" tabindex="-1" role="dialog" aria-labelledby="confirmarEliminarLabel{{ $pe->idpedido }}">
             <div class="modal-dialog" role="document">
@@ -182,8 +181,13 @@
             </div>
         </div>
         @endforeach
+        <div>
+            {{ $pedidos->links() }}
+        </div>
+        
     </div>
-    </main>
+
+    
 @stop
 
 @section('css')
@@ -191,7 +195,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+
 @stop
 
 @section('footer')

@@ -24,4 +24,14 @@ class Cliente extends Model
         'idpromotor',
         'idmercado'
     ];
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class, 'idcliente');
+    }
+
+    public function mercado()
+    {
+        return $this->belongsTo(Mercado::class, 'idmercado');
+    }
 }

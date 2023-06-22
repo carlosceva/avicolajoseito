@@ -18,4 +18,20 @@ class Pedido extends Model
         'estado',
         'observacion',
     ];
+
+    public function detalles()
+    {
+        return $this->hasMany(Detalle::class, 'idpedido');
+    }
+    
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'idcliente');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'iduser');
+    }
+
 }

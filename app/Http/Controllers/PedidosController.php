@@ -35,41 +35,21 @@ class PedidosController extends Controller
         $fechaPedidos = Pedido::whereDate('created_at', $fechaActual)->get();
         
         if(Auth::user()->rol == 'promotor'){
-        $pedidos = DB::table('pedidos as p')
-            ->join('clientes as c','p.idcliente','=','c.idcliente')
-            ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion')
-            ->where('p.iduser','=',$promotor)
-            ->where('p.estado','a')
-            ->whereDate('p.created_at', $fechaActual)
-            ->orderBy('p.idpedido','desc')
-            ->get();
-        $detalles = DB::table('detallepedidos as d')
-            ->join('productos as pr','pr.idproducto','=','d.idproducto')
-            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad','d.descripcion')
-            ->where('d.estado','a')
-            ->get();
-        }
-        if(Auth::user()->rol == 'auxiliar' || Auth::user()->rol == 'administrador'){
-            $pedidos = DB::table('pedidos as p')
-            ->join('clientes as c','p.idcliente','=','c.idcliente')
-            ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->join('users as u','u.id','=','p.iduser')
-            ->where('p.estado','a')
-            ->whereDate('p.created_at', $fechaActual)
-            ->select('p.idpedido','p.idcliente','p.iduser','p.created_at as hora','c.nombrecliente','m.nombremercado','p.observacion','u.name')
-            ->orderBy('p.idpedido','desc')
-            ->get();
-        $detalles = DB::table('detallepedidos as d')
-            ->join('productos as pr','pr.idproducto','=','d.idproducto')
-            ->join('pedidos as pe','pe.idpedido','=','d.idpedido')
-            ->select('d.iddetalle','d.idpedido','pr.nombreproducto','d.cantidad','d.descripcion')
-            ->where('d.estado','a')
-            ->get();
+            $pedidos = Pedido::with('detalles.producto','cliente.mercado','user')
+                ->where('estado', 'a')
+                ->where('p.iduser','=',$promotor)
+                ->whereDate('created_at', $fechaActual)
+                ->get();
         }
 
-        return view('Pedidos.index',['pedidos'=>$pedidos,'detalles'=>$detalles,'puedeAgregarPedido'=>$puedeAgregarPedido]);
+        if(Auth::user()->rol == 'auxiliar' || Auth::user()->rol == 'administrador'){
+            $pedidos = Pedido::with('detalles.producto','cliente.mercado','user')
+                ->where('estado', 'a')
+                ->whereDate('created_at', $fechaActual)
+                ->SimplePaginate(15);
+        }
+
+        return view('Pedidos.index', compact('pedidos','puedeAgregarPedido'));
     }
 
     /**

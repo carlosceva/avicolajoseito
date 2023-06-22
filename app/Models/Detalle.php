@@ -19,4 +19,9 @@ class Detalle extends Model
         'descripcion',
         'estado'
     ];
+
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'idproducto');
+    }
 }
