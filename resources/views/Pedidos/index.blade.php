@@ -27,6 +27,10 @@
         </div>
     </div>
     <h1>Mis pedidos</h1>
+    &nbsp;
+    <div>
+            {{ $pedidos->links() }}
+    </div>
 @stop
 
 @section('content')
@@ -184,7 +188,7 @@
         <div>
             {{ $pedidos->links() }}
         </div>
-        
+        &nbsp;
     </div>
 
     

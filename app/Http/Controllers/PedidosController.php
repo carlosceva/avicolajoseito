@@ -39,17 +39,19 @@ class PedidosController extends Controller
                 ->where('estado', 'a')
                 ->where('p.iduser','=',$promotor)
                 ->whereDate('created_at', $fechaActual)
-                ->get();
+                ->orderBy('idpedido','desc')
+                ->SimplePaginate(15);
         }
 
         if(Auth::user()->rol == 'auxiliar' || Auth::user()->rol == 'administrador'){
             $pedidos = Pedido::with('detalles.producto','cliente.mercado','user')
                 ->where('estado', 'a')
                 ->whereDate('created_at', $fechaActual)
+                ->orderBy('idpedido','desc')
                 ->SimplePaginate(15);
         }
 
-        return view('Pedidos.index', compact('pedidos','puedeAgregarPedido'));
+        return view('Pedidos.index', ['pedidos' => $pedidos,'puedeAgregarPedido'=>$puedeAgregarPedido]);
     }
 
     /**
