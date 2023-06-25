@@ -16,16 +16,16 @@ class BloquearController extends Controller
      */
     public function index()
     {
-        $promotor=Auth::id();
+        $promotor = Auth::id();
         $bloqueados =  DB::table('clientes as c')
-            ->select('c.idcliente','c.nombrecliente','c.codcliente')
-            ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->where('c.iduser','=',$promotor)
-            ->where('c.estado','=','i')
-            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
-            ->orderBy('c.nombrecliente','asc')
+            ->select('c.idcliente', 'c.nombrecliente', 'c.codcliente')
+            ->join('mercados as m', 'm.idmercado', '=', 'c.idmercado')
+            ->where('c.iduser', '=', $promotor)
+            ->where('c.estado', '=', 'i')
+            ->select('c.idcliente', 'c.codcliente', 'c.nombrecliente', 'm.nombremercado as mercado', 'c.celular', 'c.estado')
+            ->orderBy('c.nombrecliente', 'asc')
             ->get();
-        return view('Clientes.bloqueados',['bloqueados'=>$bloqueados]);
+        return view('Clientes.bloqueados', ['bloqueados' => $bloqueados]);
     }
 
     /**
@@ -42,13 +42,13 @@ class BloquearController extends Controller
     public function store(Request $request)
     {
         $datos = $request->codigoclientes;
-        $codigo = explode(",",$datos);
+        $codigo = explode(",", $datos);
         $numero = count($codigo);
-        for ($i=0 ; $i<$numero ; $i++){
-            DB::table('clientes')->where('codcliente','=',$codigo[$i])->update(['estado'=>'i']);
+        for ($i = 0; $i < $numero; $i++) {
+            DB::table('clientes')->where('codcliente', '=', $codigo[$i])->update(['estado' => 'i']);
         };
 
-        session()->flash('status','Se bloquearon '.$numero. ' clientes.');
+        session()->flash('status', 'Se bloquearon ' . $numero . ' clientes.');
         return Redirect::to('bloquear');
     }
 
@@ -73,12 +73,15 @@ class BloquearController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $cliente = Cliente::findOrFail($id);
-        //dd($bloquear);
-        $estado = $request->input('estado') ? 'a' : 'i';
+        $estado = ($request->input('estado') === 'a') ? 'a' : 'i';
         $cliente->update(['estado' => $estado]);
-        //return Redirect::to('bloqueados');
-        return redirect()->back();
+        if ($cliente->estado === $estado) {
+            return response()->json(['success' => true, 'message' => 'Estado guardado correctamente']);
+        } else {
+            return response()->json(['error' => true, 'message' => 'Error al guardar el estado']);
+        }
     }
 
 
@@ -90,13 +93,15 @@ class BloquearController extends Controller
         //
     }
 
-    public function indexBloquear(){
+    public function indexBloquear()
+    {
         return view('Clientes.bloquear');
     }
 
-    public function indexHora(){
+    public function indexHora()
+    {
         $hora = DB::table('config')->first();
-        return view('Config.hora',['hora'=>$hora]);
+        return view('Config.hora', ['hora' => $hora]);
     }
 
     public function updateHora(Request $request, $id)

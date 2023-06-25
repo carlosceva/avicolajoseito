@@ -123,8 +123,13 @@ class ClientesController extends Controller
                 ->orderBy('c.estado', 'desc')
                 ->orderBy('c.idcliente', 'asc')
                 ->get();
-            
-            return datatables()->of($clientes)->toJson();
+
+            return datatables()
+                ->of($clientes)
+                ->addColumn('accion', function ($cliente) {
+                    return view('Clientes.accion', compact('cliente'));
+                })
+                ->toJson();
         }
 
         return view('Clientes.clientes');

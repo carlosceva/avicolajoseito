@@ -46,6 +46,7 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#usuarios').DataTable({
@@ -76,17 +77,36 @@
                         }
                     },
                     {
-                        data: 'estado',
-                        render: function(data, type, row) {
-                            return '<div class="form-check form-switch">' +
-                                '<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"' +
-                                (data === 'a' ? ' checked' : '') +
-                                '></div>';
-                        }
+                        data: 'accion'
                     }
                 ]
             });
+
+
         });
+    </script>
+    <script>
+        function changeStatus(checkbox) {
+            var form = $(checkbox).closest('form');
+            var idCliente = $(checkbox).data('id');
+            var estado = (checkbox.checked) ? 'a' : 'i';
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                data: {
+                    _method: 'PATCH',
+                    _token: '{{ csrf_token() }}',
+                    estado: estado
+                },
+                success: function(response) {
+                    if (response.success) {
+                        console.log(response.message);
+                    } else {
+                        console.log(response.error);
+                    }
+                }
+            });
+        }
     </script>
 @stop
 
