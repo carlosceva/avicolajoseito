@@ -75,7 +75,7 @@ class BloquearController extends Controller
     {
         $cliente = Cliente::findOrFail($id);
         //dd($bloquear);
-        $estado = request()->has('estado') ? 'a' : 'i';
+        $estado = $request->input('estado') ? 'a' : 'i';
         $cliente->update(['estado' => $estado]);
         //return Redirect::to('bloqueados');
         return redirect()->back();

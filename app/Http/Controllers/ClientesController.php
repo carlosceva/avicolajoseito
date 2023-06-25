@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\datatables;
+
 
 class ClientesController extends Controller
 {
@@ -21,15 +22,15 @@ class ClientesController extends Controller
         $promotor = Auth::user()->id;
 
         $clientes =  DB::table('clientes as c')
-            ->select('c.idcliente','c.nombrecliente','c.codcliente')
-            ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->where('c.iduser','=',$promotor)
-            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado as mercado','c.celular','c.estado')
-            ->orderBy('c.estado','desc')
+            ->select('c.idcliente', 'c.nombrecliente', 'c.codcliente')
+            ->join('mercados as m', 'm.idmercado', '=', 'c.idmercado')
+            ->where('c.iduser', '=', $promotor)
+            ->select('c.idcliente', 'c.codcliente', 'c.nombrecliente', 'm.nombremercado as mercado', 'c.celular', 'c.estado')
+            ->orderBy('c.estado', 'desc')
             ->orderBy('c.idcliente', 'asc')
             ->get();
 
-        return view('Clientes.index',['clientes'=>$clientes]);
+        return view('Clientes.index', ['clientes' => $clientes]);
     }
 
     /**
@@ -38,12 +39,12 @@ class ClientesController extends Controller
     public function create()
     {
         $promotores = DB::table('users')
-            ->where('rol','=','promotor')
-            ->orderBy('name','asc')
+            ->where('rol', '=', 'promotor')
+            ->orderBy('name', 'asc')
             ->get();
 
         $mercados = Mercado::orderBy('nombremercado', 'asc')->get();
-        return view('Clientes.create',['promotores'=>$promotores,'mercados'=>$mercados]);
+        return view('Clientes.create', ['promotores' => $promotores, 'mercados' => $mercados]);
     }
 
     /**
@@ -52,29 +53,29 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'promotor'=>'required',
-            'mercado'=>'required',
-            'codcliente'=>'required',
-            'nombrecliente'=>'required',
+            'promotor' => 'required',
+            'mercado' => 'required',
+            'codcliente' => 'required',
+            'nombrecliente' => 'required',
         ]);
 
         try {
             DB::beginTransaction();
 
-            $cliente = New Cliente();
-            $cliente->nombrecliente=$request->input('nombrecliente');
-            $cliente->codcliente=$request->input('codcliente');
-            $cliente->celular=$request->input('celular');
-            $cliente->puesto=$request->input('puesto');
-            $cliente->iduser=$request->input('promotor');
-            $cliente->idmercado=$request->input('mercado');
-            $cliente->observaciones=$request->input('observaciones');
+            $cliente = new Cliente();
+            $cliente->nombrecliente = $request->input('nombrecliente');
+            $cliente->codcliente = $request->input('codcliente');
+            $cliente->celular = $request->input('celular');
+            $cliente->puesto = $request->input('puesto');
+            $cliente->iduser = $request->input('promotor');
+            $cliente->idmercado = $request->input('mercado');
+            $cliente->observaciones = $request->input('observaciones');
             $cliente->estado = 'a';
             $cliente->save();
-            
+
             DB::commit();
-            session()->flash('status','Registro guardado exitosamente!!');
-        }catch (\Exception $e){
+            session()->flash('status', 'Registro guardado exitosamente!!');
+        } catch (\Exception $e) {
             dd($e);
         }
 
@@ -94,7 +95,6 @@ class ClientesController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        
     }
 
     /**
@@ -102,7 +102,6 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-
     }
 
     /**
@@ -115,20 +114,19 @@ class ClientesController extends Controller
 
     public function todosLosClientes(Request $request)
     {
-        //$clientes = Cliente::orderBy('estado','desc')->orderBy('idcliente', 'asc')->get();
 
-        $searchTerm = $request->input('search'); // Obtén el término de búsqueda del request
-        //$usuarios = Cliente::where('nombrecliente', 'LIKE', "%$searchTerm%")->get(); // Filtra los usuarios por el término de búsqueda
+        if ($request->ajax()) {
+            $clientes = DB::table('clientes as c')
+                ->join('mercados as m', 'm.idmercado', '=', 'c.idmercado')
+                ->join('users as u', 'c.iduser', '=', 'u.id')
+                ->select('c.idcliente', 'c.codcliente', 'c.nombrecliente', 'm.nombremercado', 'c.estado', 'u.name')
+                ->orderBy('c.estado', 'desc')
+                ->orderBy('c.idcliente', 'asc')
+                ->get();
+            
+            return datatables()->of($clientes)->toJson();
+        }
 
-        $clientes = DB::table('clientes as c')
-            ->join('mercados as m','m.idmercado','=','c.idmercado')
-            ->join('users as u','c.iduser','=','u.id')
-            ->select('c.idcliente','c.codcliente','c.nombrecliente','m.nombremercado','c.estado','u.name')
-            ->orderBy('c.estado','desc')
-            ->orderBy('c.idcliente','asc')
-            ->get();
-        return view('Clientes.clientes', compact('clientes'));
+        return view('Clientes.clientes');
     }
-
-    
 }

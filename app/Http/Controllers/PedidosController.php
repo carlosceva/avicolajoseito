@@ -35,8 +35,6 @@ class PedidosController extends Controller
         $horaI = $hora->horainicio; 
         $horaF = $hora->horafin;
 
-        //dd($horaI, $horaF);
-
         $puedeAgregarPedido = $now->between($horaI, $horaF);
 
         // Obtener los pedidos del mismo día

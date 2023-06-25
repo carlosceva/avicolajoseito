@@ -2,80 +2,91 @@
 
 @section('title', 'Mis clientes')
 
-@section('content_header')
-@if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-    <div class="float-right d-sm-block">
-            <a href="{{url('clientes/create')}}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
-    </div>
-@endif
-    <h1>Todos mis clientes</h1>
-@stop
-
-@section('content')  
-    <div class="row card table-responsive">
-        <div class="card-body">
-        <table class="table table-hover" id="usuarios">
-            <thead class="table-light">
-            <tr>
-                <th>Id</th>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th class="d-none d-md-table-cell">Mercado</th>
-                <th>Promotor</th>
-                <th>Estado</th>
-                @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                    <th>Accion</th>
-                @endif
-            </tr>
-            </thead>
-            <tbody class="table-group-divider">
-            
-                @foreach($clientes as $b)
-                <tr <?php if ($b->estado ==="i") { echo 'style="background-color: red; color:white;"'; } ?>>
-                    <td>{{ $b->idcliente }}</td>
-                    <td>{{$b->codcliente}}</td>
-                    <td>{{$b->nombrecliente}}</td>
-                    <td>{{$b->nombremercado}}</td>
-                    <td>{{$b->name}}</td>
-                    <td>
-                        @if($b->estado =="a")
-                            activo
-                        @else
-                            inactivo
-                        @endif
-                    </td>
-                    @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
-                    <td class="text-center">
-                        <div class="form-check form-switch">
-                            <form method="POST" action="{{ route('bloquear.update', $b->idcliente) }}">
-                                @method('PATCH')
-                                @csrf
-                                <input class="form-check-input" type="checkbox" name="estado" onchange="this.form.submit()" {{ ($b->estado == 'i') ? '' : 'checked' }}>
-                            </form>
-                        </div>
-                    </td>
-                    @endif
-                </tr>
-                @endforeach
-           
-            
-            </tbody>
-        </table>
-        </div>
-    </div>
-    
-@stop
-
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
+@stop
+
+@section('content_header')
+    @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+        <div class="float-right d-sm-block">
+            <a href="{{ url('clientes/create') }}" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Agregar</a>
+        </div>
+    @endif
+    <h1>Todos mis clientes</h1>
+@stop
+
+@section('content')
+    <div class="card">
+        <div class="card-body">
+            <table id="usuarios" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Mercado</th>
+                        <th>Promotor</th>
+                        <th>Estado</th>
+                        @if (auth()->user()->rol == 'administrador' || auth()->user()->rol == 'auxiliar')
+                            <th>Accion</th>
+                        @endif
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+
 @stop
 
 @section('js')
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
     <script>
-        $('#usuarios').DataTable();
+        $(document).ready(function() {
+            $('#usuarios').DataTable({
+                responsive: true,
+                autoWidth: false,
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('client.all') }}',
+                columns: [{
+                        data: 'idcliente'
+                    },
+                    {
+                        data: 'codcliente'
+                    },
+                    {
+                        data: 'nombrecliente'
+                    },
+                    {
+                        data: 'nombremercado'
+                    },
+                    {
+                        data: 'name'
+                    },
+                    {
+                        data: 'estado',
+                        render: function(data, type, row) {
+                            return (data === 'a') ? 'activo' : 'inactivo';
+                        }
+                    },
+                    {
+                        data: 'estado',
+                        render: function(data, type, row) {
+                            return '<div class="form-check form-switch">' +
+                                '<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"' +
+                                (data === 'a' ? ' checked' : '') +
+                                '></div>';
+                        }
+                    }
+                ]
+            });
+        });
     </script>
 @stop
 
