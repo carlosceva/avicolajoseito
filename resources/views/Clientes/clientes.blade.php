@@ -20,7 +20,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <table id="usuarios" class="table table-striped">
+            <table id="usuarios" class="table table-hover">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -50,6 +50,22 @@
     <script>
         $(document).ready(function() {
             $('#usuarios').DataTable({
+                language: {
+                    info: 'Mostrar _PAGE_ pagina de _PAGES_',
+                    search: 'Buscar',
+                    paginate: {
+                        next: 'Siguiente',
+                        previous: 'Anterior'
+                    },
+                    lengthMenu: 'Mostrar _MENU_ Registros',
+                    loadingRecords: 'Cargando...',
+                    processing: 'Procesando',
+                    emptyTable: 'No hay datos',
+                    infoEmpty: '',
+                    zeroRecords: 'No hay coincidencias',
+                    infoEmpty: '',
+                    infoFiltered: ''
+                },
                 responsive: true,
                 autoWidth: false,
                 processing: true,
@@ -79,16 +95,24 @@
                     {
                         data: 'accion'
                     }
-                ]
+                ],
+                drawCallback: function(settings) {
+                    var api = this.api();
+                    api.rows().every(function() {
+                        var data = this.data();
+                        var estado = data.estado;
+                        var rowNode = this.node();
+                        $(rowNode).toggleClass('table-danger', estado === 'i');
+                    });
+                }
             });
-
-
         });
     </script>
     <script>
         function changeStatus(checkbox) {
             var form = $(checkbox).closest('form');
             var idCliente = $(checkbox).data('id');
+            var row = $(checkbox).closest('tr');
             var estado = (checkbox.checked) ? 'a' : 'i';
             $.ajax({
                 url: form.attr('action'),
@@ -100,9 +124,7 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        console.log(response.message);
-                    } else {
-                        console.log(response.error);
+                        row.toggleClass('table-danger', estado === 'i');
                     }
                 }
             });

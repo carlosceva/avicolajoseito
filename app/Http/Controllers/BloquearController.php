@@ -78,9 +78,9 @@ class BloquearController extends Controller
         $estado = ($request->input('estado') === 'a') ? 'a' : 'i';
         $cliente->update(['estado' => $estado]);
         if ($cliente->estado === $estado) {
-            return response()->json(['success' => true, 'message' => 'Estado guardado correctamente']);
+            return response()->json(['success' => true]);
         } else {
-            return response()->json(['error' => true, 'message' => 'Error al guardar el estado']);
+            return response()->json(['success' => false]);
         }
     }
 
